@@ -1,16 +1,20 @@
 # =============================================================================
 #
-vi .bashrc
 export PS1="\n\[\e[31m\]\u\[\e[m\]\[\e[31m\]@\[\e[m\]\[\e[31m\]\h\[\e[m\]\[\e[31m\]:\[\e[m\]\[\e[31m\]\w\[\e[m\]\[\e[31m\]>\[\e[m\]\n\e[31m\]>>>\e[30m\]  "
 
+# alias ll='ls -alhF --group-directories-first'
+# alias ll='ls -alhF --group-directories-first --color=never'
 alias ll='ls -alhF'
+
 cd projects/
 source my_venv/Scripts/activate
 
+cd /c/Users/dargth/projects/django_telusko/telusko
 
 # =============================================================================
 # 21.03.2021  -  django_PrKn  -  https://www.youtube.com/watch?v=Q_OgdrsWmGM
 
+--> stop
 --> start:	ProgrammingKnowledge: Python: Django
 		Python Django Tutorial (2021) | Full Course for Beginners
 
