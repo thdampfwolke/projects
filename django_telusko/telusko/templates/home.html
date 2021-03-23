@@ -1,2 +1,8 @@
-<h1>!-!-- Hello World --!-!</h1>
-<h2>-----  home.html  -----</h2>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>!-dyn-!-- {{name}} --!-dyn-!</h1>
+<h2>-----  base.html + home.html  -----</h2>
+
+{% endblock %}
