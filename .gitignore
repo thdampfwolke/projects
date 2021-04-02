@@ -6,6 +6,7 @@
 __pycache__
 myvenv
 my_venv
+bootstrap
 db.sqlite3
 .DS_Store
 **/.vs
