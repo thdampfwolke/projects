@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>app_staff_test_05</title>
-</head>
+{% extends 'base.html' %}
 
-<body>
-    <!-- <h1>!-! Hello World - 05 !-!</h1> -->
-    <h1>!-! Hello World - {{ name }} - 06 !-!</h1>
-</body>
-</html>
+{% block content %}
+    <h1>!-! Hello World - {{ name }} - 08 !-!</h1>
+    <h2>!-! base.html + home.html + result.html !-!</h2>
+
+    <form action='add'>
+        Enter 1st number: <input type='text' name='num1'><br>
+        Enter 2nd number: <input type='text' name='num2'><br>
+        <input type='submit'>
+    </form>
+{% endblock %}
