@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>!-! Hello World - {{ name }} - 08 !-!</h1>
+    <h1>!-! Hello World - {{ name }} - 09 !-!</h1>
     <h2>!-! base.html + home.html + result.html !-!</h2>
 
-    <form action='add'>
+    <!-- <form action="add" method="get">  -->
+    <!-- <form action="add" method="post"> -->
+    <form action="add" method="post">
+        <!-- 403 - CSRF-Verifizierung fehlgeschlagen. Anfrage abgebrochen -->
+        <!-- wenn post: csrf_token -->
+        {% csrf_token %}
+
         Enter 1st number: <input type='text' name='num1'><br>
         Enter 2nd number: <input type='text' name='num2'><br>
         <input type='submit'>
