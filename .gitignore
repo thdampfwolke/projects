@@ -13,6 +13,7 @@ db.sqlite3
 **/.vscode
 # **/static
 **/*.pyc
+**/*.zip
 **/*~
 **/__pycache__
 **/myvenv
