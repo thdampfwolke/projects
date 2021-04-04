@@ -1,22 +1,24 @@
 /.vs
 /.vscode
-# /static
 *.pyc
 *~
 __pycache__
 myvenv
 my_venv
-boot-strap
 db.sqlite3
 .DS_Store
 **/.vs
 **/.vscode
-# **/static
 **/*.pyc
-**/*.zip
 **/*~
 **/__pycache__
 **/myvenv
 **/my_venv
 **/db.sqlite3
 **/.DS_Store
+#
+boot-strap
+#
+# /static
+# **/static
+# **/*.zip
