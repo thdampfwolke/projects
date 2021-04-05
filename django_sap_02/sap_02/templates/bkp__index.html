@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!-- Navigation (Stays on Top) -->
+    <div class="w3-top w3-bar w3-black">
+        <a href="#home" class="w3-bar-item w3-button">Home</a>
+        <a href="#serverdb" class="w3-bar-item w3-button">Server DB</a>
+        <a href="#members" class="w3-bar-item w3-button">Members</a>
+        <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+    </div>
+  
+    <!-- Start Content -->
+    <div id="home" class="w3-content">
+        <!-- Image -->
+        <!-- <img src="../static/images/img_01.jpg" alt="test" style="width:100%"> -->
+        <img src="{{baseUrl}}/img_01.jpg" alt="test" style="width:100%">
+    <!-- End Content -->
+    </div>
+  
+    <!-- <img src="../static/images/solar.jpg" alt="LA" style="width:100%"> -->
+    <img src="{{baseUrl}}/solar.jpg" alt="test" style="width:80%">
+
+    <div class="w3-container w3-center w3-teal">
+        <h1>This is a Heading</h1>
+        <p>This is a paragraph.</p>
+        <p>This is another paragraph.</p>
+    </div>
+
+    <p>
+        <button onclick="w3.hide('#London')">Hide London</button>
+        <button onclick="w3.show('#London')">Show London</button>
+    </p>
+
+    <div id="London" class="w3-container w3-red">
+        <h2>London</h2>
+        <p>London is the capital city of England.</p>
+    </div>
+    <div id="Paris" class="w3-container w3-green">
+        <h2>Paris</h2>
+        <p>Paris is the capital of France.</p> 
+    </div>
+    <div id="Tokyo" class="w3-container w3-blue">
+        <h2>Tokyo</h2>
+        <p>Tokyo is the capital of Japan.</p>
+    </div>
+
+{% endblock %}
+
+
+<!--
+{% load static %}
+{% static "images" as baseUrl %}
+
+  <div class="intro_icon"><img src="{% static 'images/wallet.svg' %}" alt="">
+
+  {% for dest in dests %}
+  <!-- Destination -->
+  <div class="destination item">
+    <div class="destination_image">
+      <!-- <img src="{{baseUrl}}/{{dest.img}}" alt=""> -->
+          <img src="{{dest.img.url}}" alt="">
+  
+          {% if dest.offer %}
+          <div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+          {% endif %}
+  
+    </div>
+    <div class="destination_content">
+      <div class="destination_title"><a href="destinations.html">{{dest.name}}</a></div>
+      <div class="destination_subtitle"><p>{{dest.desc}}</p></div>
+      <div class="destination_price">From ${{dest.price}}</div>
+    </div>
+  </div>
+  {% endfor %}
+-->
