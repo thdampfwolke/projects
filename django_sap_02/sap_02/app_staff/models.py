@@ -1,3 +1,11 @@
+# ../app_staff/models.py
+
 from django.db import models
 
-# Create your models here.
+class Mitarbeiter:
+    id = int
+    nname = str
+    vname = str
+    img = str
+    desc = str
+    phone = int
