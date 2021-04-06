@@ -1,3 +1,5 @@
+# ../app_staff/apps.py
+
 from django.apps import AppConfig
 
 

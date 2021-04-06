@@ -22,6 +22,7 @@ def index_03(request):
     ma01.img = 'img_01.jpg'
     ma01.desc = 'ma01-desc-03'
     ma01.phone = 121
+    ma01.offer = False
 
     ma02 = Mitarbeiter()
     ma02.nname = 'ma02-nname-03'
@@ -29,6 +30,7 @@ def index_03(request):
     ma02.img = 'img_02.jpg'
     ma02.desc = 'ma02-desc-03'
     ma02.phone = 232
+    ma02.offer = True
 
     ma03 = Mitarbeiter()
     ma03.nname = 'ma03-nname-03'
@@ -36,6 +38,7 @@ def index_03(request):
     ma03.img = 'img_03.jpg'
     ma03.desc = 'ma03-desc-03'
     ma03.phone = 343
+    ma03.offer = False
 
     return render(request, 'index_03.html', {'ma01': ma01, 'ma02': ma02, 'ma03': ma03 })
 
@@ -48,6 +51,7 @@ def index_04(request):
     ma04.img = 'img_04.jpg'
     ma04.desc = 'ma04-desc-04'
     ma04.phone = 454
+    ma04.offer = False
 
     ma05 = Mitarbeiter()
     ma05.nname = 'ma05-nname-04'
@@ -55,6 +59,7 @@ def index_04(request):
     ma05.img = 'img_05.jpg'
     ma05.desc = 'ma05-desc-04'
     ma05.phone = 565
+    ma05.offer = True
 
     ma06 = Mitarbeiter()
     ma06.nname = 'ma06-nname-04'
@@ -62,6 +67,7 @@ def index_04(request):
     ma06.img = 'img_06.jpg'
     ma06.desc = 'ma06-desc-04'
     ma06.phone = 676
+    ma06.offer = False
 
     ma = [ma04, ma05, ma06]
     return render(request, 'index_04.html', {'ma': ma })

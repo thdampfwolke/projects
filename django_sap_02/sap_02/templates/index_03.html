@@ -4,6 +4,9 @@
     <div class="w3-container w3-center w3-teal">
         <h1>-- index_03.html --</h1>
         <img src="{{baseUrl}}/{{ma01.img}}" alt="ma01">
+        {% if ma01.offer %}
+            <h2>Special Offer</h2>
+        {% endif %}
         <h3> {{ ma01.nname }} </h3>
         <h3> {{ ma01.vname }} </h3>
         <h3> {{ ma01.desc }} </h3>
@@ -12,6 +15,9 @@
     <div class="w3-container w3-center w3-red">
         <h1>-- index_03.html --</h1>
         <img src="{{baseUrl}}/{{ma02.img}}" alt="ma02">
+        {% if ma02.offer %}
+            <h2>Special Offer</h2>
+        {% endif %}
         <h3> {{ ma02.nname }} </h3>
         <h3> {{ ma02.vname }} </h3>
         <h3> {{ ma02.desc }} </h3>
@@ -20,6 +26,9 @@
     <div class="w3-container w3-center w3-blue">
         <h1>-- index_03.html --</h1>
         <img src="{{baseUrl}}/{{ma03.img}}" alt="ma03">
+        {% if ma03.offer %}
+            <h2>Special Offer</h2>
+        {% endif %}
         <h3> {{ ma03.nname }} </h3>
         <h3> {{ ma03.vname }} </h3>
         <h3> {{ ma03.desc }} </h3>

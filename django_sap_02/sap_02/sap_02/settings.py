@@ -1,3 +1,5 @@
+# ../..settings../settings.py
+
 """
 Django settings for sap_02 project.
 

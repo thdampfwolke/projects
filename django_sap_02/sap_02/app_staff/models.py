@@ -9,3 +9,4 @@ class Mitarbeiter:
     img = str
     desc = str
     phone = int
+    offer = bool
