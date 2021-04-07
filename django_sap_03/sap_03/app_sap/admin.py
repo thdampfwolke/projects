@@ -1,3 +1,6 @@
-from django.contrib import admin
+# ../app_sap/admin.py
 
-# Register your models here.
+from django.contrib import admin
+from .models import Mitarbeiter2
+
+admin.site.register(Mitarbeiter2)

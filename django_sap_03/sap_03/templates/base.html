@@ -10,9 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAP-CMDB</title>
 
-    <!-- <link rel="stylesheet" href="../static/styles/w3_css/w3.css"> -->
-    <!-- <link rel="stylesheet" href="../static/styles/w3_css/w3-theme-black.css"> -->
-
     <link rel="stylesheet" type="text/css" href="{% static 'styles/w3_css/w3.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'styles/w3_css/w3-theme-black.css' %}">
 
@@ -26,19 +23,25 @@
             height: inherit;
         }
     </style>
-    <!-- <script src="../static/js/w3_js/w3.js"></script> -->
-         <script src="{% static 'js/w3_js/w3.js' %}"></script>
+    <script src="{% static 'js/w3_js/w3.js' %}"></script>
 </head>
 
 <body>
     <!-- Navigation (Stays on Top) -->
-    <div class="w3-top w3-bar w3-black">
+    <div class="w3-top w3-bar w3-blue">
         <a href="index.html" class="w3-bar-item w3-button">Home</a>
         <a href="index_01_dyn.html" class="w3-bar-item w3-button">index_01_dyn</a>
-        <a href="index_02.html" class="w3-bar-item w3-button">index_02</a>
-        <a href="index_03.html" class="w3-bar-item w3-button">index_03</a>
-        <a href="index_04.html" class="w3-bar-item w3-button">index_04</a>
+        <a href="index_02_db.html" class="w3-bar-item w3-button">index_02_db</a>
         <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+
+        {% if user.is_authenticated %}
+            <a href="accounts/logout" class="w3-bar-item w3-right w3-button">Logout</a>
+            <a href="#" class="w3-bar-item w3-right w3-button">Hello: {{ user.username }}</a>
+        {% else %}
+            <a href="accounts/login" class="w3-bar-item w3-right w3-button">Login</a>
+            <a href="accounts/register" class="w3-bar-item w3-right w3-button">Register</a>
+        {% endif %}
+
     </div>
     
     <br> <br>
@@ -48,3 +51,25 @@
 </body>
 
 </html>
+
+
+<!-- old: -->
+<!-- {% if user.is_authenticated %} -->
+<!--     <a href="#u01" class="w3-bar-item w3-right w3-button">Hello, {{ user.username }}</a> -->
+<!--     <a href="accounts/logout" class="w3-bar-item w3-right w3-button">Logout</a> -->
+<!-- {% else %} -->
+<!--     <a href="accounts/register" class="w3-bar-item w3-right w3-button">Register</a> -->
+<!--     <a href="accounts/login" class="w3-bar-item w3-right w3-button">Login</a> -->
+<!-- {% endif %} -->
+
+<!-- old: -->
+<!-- <!-- Navigation (Stays on Top) --> -->
+<!-- <div class="w3-top w3-bar w3-blue"> -->
+<!--     <a href="index.html" class="w3-bar-item w3-button">Home</a> -->
+<!--     <a href="index_01_dyn.html" class="w3-bar-item w3-button">index_01_dyn</a> -->
+<!--     <a href="index_02_db.html" class="w3-bar-item w3-button">index_02_db</a> -->
+<!--     <a href="accounts/register" class="w3-bar-item w3-button">Register</a> -->
+<!--     <a href="accounts/login" class="w3-bar-item w3-button">Login</a> -->
+<!--     <a href="accounts/logout" class="w3-bar-item w3-button">Logout</a> -->
+<!--     <a href="#contact" class="w3-bar-item w3-button">Contact</a> -->
+<!-- </div> -->
