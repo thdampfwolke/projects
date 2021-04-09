@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'app_test.apps.AppTestConfig',
     'app_sap.apps.AppSapConfig',
     'django.contrib.admin',
     'django.contrib.auth',
