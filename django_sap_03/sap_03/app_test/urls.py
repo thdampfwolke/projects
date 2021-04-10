@@ -4,6 +4,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('', views.test_01, name='test_01'),
     path('test_01.html', views.test_01, name='test_01'),
 ]
 
