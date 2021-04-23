@@ -10,6 +10,8 @@ from core.models import Person, Course, Grade
 @admin.register(Person)
 class PersonAdmin(admin.ModelAdmin):
     list_display = ("last_name", "first_name", "show_average")
+    fields = ("first_name", "last_name", "courses")
+    search_fields = ("last_name__startswith", )
 
     def show_average(self, obj):
         from django.db.models import Avg
