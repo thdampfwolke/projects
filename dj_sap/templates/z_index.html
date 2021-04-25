@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!-- Start Content -->
+    <div id="home" class="w3-content">
+        <!-- Image -->
+        <!-- <img src="../static/images/img_01.jpg" alt="" style="width:100%"> -->
+        <img src="{{baseUrl}}/img_01.jpg" alt="test" style="width:100%">
+        <br><br>
+    <!-- End Content -->
+    </div>
+  
+    <div class="w3-container w3-center w3-teal">
+        <h1>This is a Heading</h1>
+        <p>This is a paragraph.</p>
+        <p>This is another paragraph.</p>
+    </div>
+
+    <p>
+        <button onclick="w3.hide('#London')">Hide London</button>
+        <button onclick="w3.show('#London')">Show London</button>
+        <button onclick="w3.hide('#Paris')">Hide Paris</button>
+        <button onclick="w3.show('#Paris')">Show Paris</button>
+        <button onclick="w3.hide('#Tokyo')">Hide Tokyo</button>
+        <button onclick="w3.show('#Tokyo')">Show Tokyo</button>
+    </p>
+
+    <div id="London" class="w3-container w3-red">
+        <h2>London</h2>
+        <p>London is the capital city of England.</p>
+    </div>
+    <div id="Paris" class="w3-container w3-green">
+        <h2>Paris</h2>
+        <p>Paris is the capital of France.</p> 
+    </div>
+    <div id="Tokyo" class="w3-container w3-blue">
+        <h2>Tokyo</h2>
+        <p>Tokyo is the capital of Japan.</p>
+    </div>
+
+{% endblock %}
+
+
+    <!-- <div class="w3-bottom"> -->
+    <!--     <div class="w3-bar w3-black"> -->
+    <!--  -->
+    <!--         {% if user.is_authenticated %} -->
+    <!--             <a href="#u01" class="w3-bar-item w3-button">Hello, {{ user.username }}</a> -->
+    <!--             <a href="accounts/logout" class="w3-bar-item w3-right w3-button">Logout</a> -->
+    <!--         {% else %} -->
+    <!--             <a href="accounts/register" class="w3-bar-item w3-right w3-button">Register</a> -->
+    <!--             <a href="accounts/login" class="w3-bar-item w3-right w3-button">Login</a> -->
+    <!--         {% endif %} -->
+    <!--     </div> -->
+    <!-- </div> -->
