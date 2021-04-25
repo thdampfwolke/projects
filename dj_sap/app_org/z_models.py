@@ -114,14 +114,14 @@ class Sap_system_landschaft(models.Model):
     date_modified  = models.DateTimeField(auto_now=True)
 
 # ----------------------------------------------------------------------------
-class Staff(models.Model):
+class Mitarbeiter(models.Model):
     # id = int
-    nname          = models.CharField(max_length=120, null=False)
-    vname          = models.CharField(max_length=120, null=False)
-    geb            = models.DateField(null=True, blank=True)
-    pic            = models.ImageField(upload_to='pics', null=True, blank=True)
+    nachname       = models.CharField(max_length=120, null=False)
+    vorname        = models.CharField(max_length=120, null=False)
+    geburtstag     = models.DateField(null=True, blank=True)
+    bild           = models.ImageField(upload_to='images', null=True, blank=True)
     email          = models.CharField(max_length=254, null=True, blank=True)
-    desc           = models.TextField(null=True, blank=True)
+    beschreibung   = models.TextField(null=True, blank=True)
     check          = models.BooleanField(null=False, default=False)
     is_active      = models.BooleanField(null=False, default=True)
     date_beg       = models.DateField(null=False)
