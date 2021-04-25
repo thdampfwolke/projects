@@ -24,13 +24,14 @@ class Zmitarbeiter(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     rollen = models.ManyToManyField("Zrolle", blank=True)   # tab: app_org_zmitarbeiter_rollen
-
-    def __str__(self):
-        return f"{self.nachname}, {self.vorname}, {self.email}, {self.geburtstag}"
+    verfahren = models.ManyToManyField("Zverfahren", blank=True)
 
     class Meta:
         verbose_name_plural = "Mitarbeiter"
         unique_together = ("nachname", "vorname", "geburtstag", )
+
+    def __str__(self):
+        return f"{self.nachname}, {self.vorname}, {self.email}, {self.geburtstag}"
 
 
 class Zrolle(models.Model):
@@ -44,8 +45,44 @@ class Zrolle(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name_plural = "Rolle"
+
     def __str__(self):
         return f"{self.rolle}, {self.beschreibung}"
 
+
+class Zverfahren(models.Model):
+    # id = int
+    verfahren = models.CharField(max_length=120)
+    beschreibung = models.TextField(null=True, blank=True)
+    check = models.BooleanField(null=False, default=False)
+    is_active = models.BooleanField(null=False, default=True)
+    date_beg = models.DateField(null=False)
+    date_end = models.DateField(null=False, default='2099-12-31')
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
     class Meta:
-        verbose_name_plural = "Rolle"
+        verbose_name_plural = "Verfahren"
+
+    def __str__(self):
+        return f"{self.verfahren}, {self.beschreibung}"
+
+
+class Zt2t_ma_ro_ve(models.Model):
+    t2t_mitarbeiter = models.ForeignKey(Zmitarbeiter, verbose_name="Mitarbeiter", on_delete=models.SET_NULL, null=True, blank=True)
+    t2t_rolle       = models.ForeignKey(Zrolle, verbose_name="Rolle", on_delete=models.SET_NULL, null=True, blank=True)
+    t2t_verfahren   = models.ForeignKey(Zverfahren, verbose_name="Verfahren", on_delete=models.SET_NULL, null=True, blank=True)
+    check = models.BooleanField(null=False, default=False)
+    is_active = models.BooleanField(null=False, default=True)
+    date_beg = models.DateField(null=False)
+    date_end = models.DateField(null=False, default='2099-12-31')
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "t2t_ma_ro_ve"
+
+    def __str__(self):
+        return f"{self.t2t_mitarbeiter}, {self.t2t_rolle}, {self.t2t_verfahren}"
