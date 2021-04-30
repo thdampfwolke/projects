@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for i in staff %}
+
+    <div class="w3-container w3-center w3-teal">
+        <h1>-- index_02_db.html --</h1>
+        {% if i.offer %}
+            <h2>Special Offer</h2>
+        {% endif %}
+        <!-- <img src="{{baseUrl}}/{{i.img}}" alt="{{i}}"> -->
+        <img src="{{ i.img.url }}" alt="{{ i }}">
+        {% if i.offer %}
+            <h2>Special Offer</h2>
+        {% endif %}
+        <h3> {{ i.nname }} </h3>
+        <h3> {{ i.vname }} </h3>
+        <h3> {{ i.desc }} </h3>
+        <h3> {{ i.phone }} </h3>
+        <h3> {{ i.handy }} </h3>
+        <hr>
+    </div>
+    
+    {% endfor %}
+
+{% endblock %}
