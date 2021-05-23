@@ -17,6 +17,7 @@ my_venv
 **/my_venv
 # **/db.sqlite3
 **/.DS_Store
+**/.idea
 #
 boot-strap
 #
