@@ -2,11 +2,13 @@
 /.vscode
 *.pyc
 *~
+*/.idea
 __pycache__
 myvenv
 my_venv
 # db.sqlite3
 # !dj_realpython/School/db.sqlite3
+py__ebook__crashkurs/.idea/py__ebook__crashkurs.iml
 .DS_Store
 **/.vs
 **/.vscode

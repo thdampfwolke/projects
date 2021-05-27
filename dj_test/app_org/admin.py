@@ -3,7 +3,25 @@
 
 from django.contrib import admin
 
-from .models import Test_liste_01
+from .models import Test_liste_01, Server_uuid, Server_hostname, Zt2t_server
+
+
+@admin.register(Zt2t_server)
+class Zt2t_serverAdmin(admin.ModelAdmin):
+    list_display = ['t2t_uuid', 't2t_name', 'is_active']
+    list_filter = ['is_active']
+
+
+@admin.register(Server_hostname)
+class Server_hostnameAdmin(admin.ModelAdmin):
+    list_display = ['name', 'is_active']
+    list_filter = ['is_active']
+
+
+@admin.register(Server_uuid)
+class Server_uuidAdmin(admin.ModelAdmin):
+    list_display = ['uuid', 'is_active']
+    list_filter = ['is_active']
 
 
 @admin.register(Test_liste_01)
