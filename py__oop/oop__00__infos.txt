@@ -1,0 +1,13 @@
+# ============================================================================
+# links:
+# 00 - https://www.python-lernen.de
+#
+# 01 - Grundlagen: Objektorientierte Programmierung (OOP) verstehen und anwenden in Python
+# 01 - https://www.python-lernen.de/oop-objektorientierte-programmierung-grundlagen.htm
+#
+# 02 - Klassen in Python
+# 02 - https://www.python-lernen.de/klassen-in-python.htm
+#
+# 03 - Initialisieren der Klasse
+# 03 - https://www.python-lernen.de/konstruktoren.htm
+#
