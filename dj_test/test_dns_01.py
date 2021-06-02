@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 
-# import os
-# print(dir(os))
-
 # -----------------------------------------------
 def del_char(f_a):
     f_list = ["{", "}", "[", "]", "'"]
@@ -31,8 +28,12 @@ def dns_C(f_reply, f_i):        # 'CNAME': ['host--1-2-3-4.test.de']
         print("error: CNAME")
     return (f_dns_type, f_hostname_C)
 
+
 # -----------------------------------------------
-def dns_I(f_reply, f_i):        # ('host--1-2-3-4.test.de', ['host--1-2-3-4'], ['1.2.3.4'])
+
+# open
+# ('host--1-2-3-4.test.de', ['host--1-2-3-4'], ['1.2.3.4'])
+def dns_I(f_reply, f_i):
     f_reply_A = f_reply[f_i].split(":")
     f_dns_type = del_char(f_reply_A[0]).strip()  # -> A
     f_hostname_CN = ""
@@ -42,12 +43,13 @@ def dns_I(f_reply, f_i):        # ('host--1-2-3-4.test.de', ['host--1-2-3-4'], [
         print("error: A-Record")
     return (f_dns_type, f_hostname_CN, f_hostname_IP)
 
+
 # ----------------------------------------------------------------------------
-a1 = "9.9.9.9;hOSt--1-2-3-4.test.de;{'A': ['1.2.3.4']}"
-#a1 = "9.9.9.9;host--2-3-4-5.test.de;{'CNAME': ['host--1-2-3-4.test.de'], 'A': ['1.2.3.4']}"
+#a1 = "9.9.9.9;hOSt--1-2-3-4.test.de;{'A': ['1.2.3.4']}"
+a1 = "9.9.9.9;host--2-3-4-5.test.de;{'CNAME': ['host--1-2-3-4.test.de'], 'A': ['1.2.3.4']}"
 #a1 = "9.9.9.9;host--3-4-5-6.test.de;{'A': ['3.4.5.6']}"
-# b1 = ('host--3-4-5-6.test.de', [], ['3.4.5.6'])
-b1 = ('host--1-2-3-4.test.de', ['host--1-2-3-4'], ['1.2.3.4'])
+# a1 = ('host--3-4-5-6.test.de', [], ['3.4.5.6'])
+# a1 = ('host--1-2-3-4.test.de', ['host--1-2-3-4'], ['1.2.3.4'])
 # ----------------------------------------------------------------------------
 deb = "a"
 # ----------------------------------------------------------------------------
@@ -65,8 +67,9 @@ if deb == "a":
         dns_type_tmp, hostname_CN_tmp, hostname_IP = dns_A(reply, 1)
         dns_type, hostname_CN = dns_C(reply, 0)
 
-elif deb == "b":            # ('host--1-2-3-4.test.de', ['host--1-2-3-4'], ['1.2.3.4'])
-    a = b1
+# ('host--1-2-3-4.test.de', ['host--1-2-3-4'], ['1.2.3.4'])
+elif deb == "b":
+    a = a1
     dns_type = "A"
     # dns_server = ""
     hostname_IP = del_char(str(a[2]))           # -> request
@@ -79,7 +82,7 @@ else:
 print(f"dns_type: {dns_type} \t hostname_request: {hostname_request} \t hostname_CN: {hostname_CN} \t hostname_IP: {hostname_IP}")
 print(f"{dns_type.upper()};{hostname_request.lower()};{hostname_CN.lower()};{hostname_IP.lower()}")
 
-#with open("99_31__data.txt", "r") as f_in:
+# with open("99_31__data.txt", "r") as f_in:
 #  new_data = sorted(list(set(f_in)))
 #  # return new_data
 #print(f"anzahl: {len(new_data)} \t {new_data}")
