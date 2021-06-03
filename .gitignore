@@ -3,6 +3,8 @@
 *.pyc
 *~
 */.idea
+zzz__test_db-master
+zzz__test_db-master.zip
 __pycache__
 myvenv
 my_venv
