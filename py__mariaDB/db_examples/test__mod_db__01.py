@@ -22,6 +22,7 @@ if __name__ == "__main__":
     cur = conn.cursor()
 
 # ----------------------------------------------------------------------------
+    deb = 0
     if deb == 1:
         new_contact_fname = "J. R. R."
         new_contact_lname = "Tolkien"
@@ -33,6 +34,7 @@ if __name__ == "__main__":
 
 # select * from contacts;
 # ----------------------------------------------------------------------------
+    deb = 0
     if deb == 1:
         new_contacts = [
             ("Howard", "Lovecraft", "hp.lovecraft@example.net"),
@@ -45,11 +47,58 @@ if __name__ == "__main__":
 
 # select * from contacts;
 # ----------------------------------------------------------------------------
+    deb = 0
     if deb == 1:
         mod_db.print_contacts(cur)
 
 # ----------------------------------------------------------------------------
     deb = 0
+    if deb == 1:
+        replace_contact_id = 1
+        replace_contact_fname = "John Ronald Reuel"
+        replace_contact_lname = "Tolkien"
+        replace_contact_email = "jrr.tolkien@example.edu"
+
+        mod_db.replace_contact(cur,
+                               replace_contact_id,
+                               replace_contact_fname,
+                               replace_contact_lname,
+                               replace_contact_email)
+        conn.commit()
+
+# ----------------------------------------------------------------------------
+    deb = 0
+    if deb == 1:
+        update_contact_email = "jrr.tolkien@example.edu"
+        update_contact_lname = "Tolkien the Grey"
+
+        mod_db.update_contact_last_name(
+            cur, update_contact_email, update_contact_lname)
+        conn.commit()
+
+# ----------------------------------------------------------------------------
+    deb = 0
+    if deb == 1:
+        remove_contact_email = "jrr.tolkien@example.edu"
+        mod_db.remove_contact(cur, remove_contact_email)
+        conn.commit()
+
+# ----------------------------------------------------------------------------
+    deb = 0
+    if deb == 1:
+        mod_db.truncate_contacts(cur)
+        conn.commit()
+
+
+# ----------------------------------------------------------------------------
+    deb = 0
+    if deb == 1:
+        pass
+
+# ----------------------------------------------------------------------------
+    deb = 0
+    if deb == 1:
+        pass
 # ----------------------------------------------------------------------------
 
     # print(conn)
