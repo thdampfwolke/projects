@@ -1,7 +1,37 @@
 #!/usr/bin/python3
 
+"""
+    -------------------------------------------------
+    Basic Operations:
+    - add a single row to the table
+    - add multiple rows to the table
+    - Selecting Data
+    - Replacing Data
+    - Updating Data
+    - Deleting Data
+    - Truncating Data
+    -------------------------------------------------
+    Transactions: BEGIN, ROLLBACK, COMMIT
+    - Adds account
+    - Update Last Name
+    -------------------------------------------------
+    Connection Pooling:
+    - Getting Connections from the Pool
+    - Returning Connections to the Pool
+    - Adding Existing Connections to the Pool
+    - Reconfiguring Connection Pools
+
+    -------------------------------------------------
+    Field Information:
+    - Retrieving Field Information for Query Results
+    - Retrieving Field Information for All Tables
+
+    -------------------------------------------------
+"""
+
 # -----------------------------------------------
-# add a single row to the table
+# Basic Operations: add a single row to the table
+
 
 def add_contact(cur, first_name, last_name, email):
     """Adds the given contact to the contacts table"""
@@ -11,7 +41,7 @@ def add_contact(cur, first_name, last_name, email):
 
 
 # -----------------------------------------------
-# add multiple rows to the table
+# Basic Operations: add multiple rows to the table
 
 def add_multiple_contacts(cur, data):
     """Adds multiple contacts to database from given data"""
@@ -21,7 +51,7 @@ def add_multiple_contacts(cur, data):
 
 
 # -----------------------------------------------
-# Selecting Data
+# Basic Operations: Selecting Data
 
 def print_contacts(cur):
     """Retrieves the list of contacts from the database and prints to stdout"""
@@ -52,7 +82,7 @@ def print_contacts(cur):
 
 
 # -----------------------------------------------
-# Replacing Data
+# Basic Operations: Replacing Data
 
 def replace_contact(cur, contact_id, first_name, last_name, email):
     """Replaces contact with the given `contact_id` with new values"""
@@ -62,7 +92,7 @@ def replace_contact(cur, contact_id, first_name, last_name, email):
 
 
 # -----------------------------------------------
-# Updating Data
+# Basic Operations: Updating Data
 
 def update_contact_last_name(cur, email, last_name):
     """Updates last name of a contact in the table"""
@@ -72,7 +102,7 @@ def update_contact_last_name(cur, email, last_name):
 
 
 # -----------------------------------------------
-# Deleting Data
+# Basic Operations: Deleting Data
 
 def remove_contact(cur, email):
     """Removes contacts from the database"""
@@ -82,9 +112,88 @@ def remove_contact(cur, email):
 
 
 # -----------------------------------------------
-# Truncating Data - inhalt von tab vollstaendig loeschen
+# Basic Operations: Truncating Data - inhalt von tab vollstaendig loeschen
 
 def truncate_contacts(cur):
     """Removes all data from contacts table"""
 
     cur.execute("TRUNCATE db_test_mariadb.contacts")
+
+
+# -----------------------------------------------
+# Transactions: Adds account
+
+def add_account(cur, first_name, last_name, email, amount):
+    """Adds the given account to the accounts table"""
+    cur.execute("INSERT INTO db_test_mariadb.accounts(first_name, last_name, email, amount) VALUES (?, ?, ?, ?)",
+                (first_name, last_name, email, amount))
+
+# -----------------------------------------------
+# Transactions: Update Last Name
+
+
+def update_account_amount(cur, email, change):
+    """Updates amount of an account in the table"""
+    cur.execute("UPDATE db_test_mariadb.accounts SET amount=(amount-?) WHERE email=?",
+                (change, email))
+
+# ============================================================================
+# open:
+# Connection Pooling:
+#   Getting Connections from the Pool
+#   Returning Connections to the Pool
+#   Adding Existing Connections to the Pool
+#   Reconfiguring Connection Pools
+# ----------------------------------------------------------------------------
+
+
+# ============================================================================
+# Field Information:
+#   Retrieving Field Information for Query Results
+#   Retrieving Field Information for All Tables
+# ----------------------------------------------------------------------------
+
+
+# -----------------------------------------------
+# Field Information: Print List of Contacts
+def select_contacts(cur):
+    """Retrieves the list of contacts from the database"""
+
+    # Retrieve Contacts
+    cur.execute(
+        "SELECT first_name, last_name, email FROM db_test_mariadb.contacts")
+
+# -----------------------------------------------
+# Field Information: Get field info from cursor
+
+
+def get_field_info(cur, field_info):
+    """Retrieves the field info associated with a cursor"""
+
+    # field_info = mariadb.fieldinfo()
+    field_info_text = []
+
+    # Retrieve Column Information
+    for column in cur.description:
+        column_name = column[0]
+        column_type = field_info.type(column)
+        column_flags = field_info.flag(column)
+        field_info_text.append(f"{column_name}: {column_type} {column_flags}")
+
+    return field_info_text
+
+    # -----------------------------------------------
+
+
+def test_db(cur):
+    cur.execute("desc db_test_mariadb.contacts")
+    print("-" * 50)
+    for i in cur:
+        print(i)
+
+    cur.execute("show create table db_test_mariadb.contacts")
+    print("-" * 50)
+    print(cur)
+    print("-" * 50)
+    for i in cur:
+        print(f"{i}\n")
