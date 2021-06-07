@@ -197,3 +197,36 @@ def test_db(cur):
     print("-" * 50)
     for i in cur:
         print(f"{i}\n")
+
+# -----------------------------------------------
+# my: test: show databases
+
+
+def test_db__show_databases(cur):
+    print("-" * 79)
+    cur.execute("show databases")
+
+    f_db_list = []
+    f_db_tab_list = []
+    f_db_dic = {}
+
+    for i in cur:
+        print(f"{i}")
+        f_db_list.append(i[0])
+
+    # print(f_db_list)
+    for i in f_db_list:
+        f_db_tab_list = []
+        print("-" * 50)
+        print(f"01 - db  - {i}")
+        cli = f"show tables in {i}"
+        cur.execute(cli)
+        for n in cur:
+            print(f"02 - tab - {n}")
+            f_db_tab_list.append(n[0])
+        print(f_db_tab_list)
+        f_db_dic[i] = f_db_tab_list
+
+    for i in f_db_dic.items():      # fehler
+        print(i)
+        print(i[0] + ' \t - \t ' + i[1])
