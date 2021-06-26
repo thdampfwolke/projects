@@ -1,0 +1,103 @@
+
+# ============================================================================
+# infos: datenformat zum einlesen in die db:
+#
+#   src (data from) : dns, ansible, man., . . .
+#   dns_type        :   A, A (reverse lookup), CNAME
+#
+#   fqdn          ip        dns_type             cname         all_ip    is_main_ip   is_used   src       date_import
+#   ------------------------------------------------------------------------------------------------------
+#   abc.test.de   1.2.3.4   -                    -             1.2.3.4   True         open      ansible   2021-06-02
+#   abc.test.de   1.2.3.4   -                    -             2.3.4.5   False                  ansible   2021-06-02
+#   abc.test.de   1.2.3.4   -                    -             3.4.5.6   False                  ansible   2021-06-02
+#   ------------------------------------------------------------------------------------------------------
+#   abc.test.de   1.2.3.4   R (reverse lookup)   -             1.2.3.4   False                  dns       2021-06-02
+#   ------------------------------------------------------------------------------------------------------
+#   abc.test.de   1.2.3.4   A                    -             1.2.3.4   False                  dns       2021-06-02
+#   abc.test.de   1.2.3.4   CNAME                xyz.test.de   1.2.3.4   False                  dns       2021-06-02
+#   ------------------------------------------------------------------------------------------------------
+#   zzz.-...      zeilen enhalten: infos, fehlermeldungen, ...
+
+DROP TABLE IF EXISTS db_test_cmdb.tab_server_name;
+
+CREATE TABLE db_test_cmdb.tab_server_name (
+id INT PRIMARY KEY AUTO_INCREMENT,
+fqdn VARCHAR(25),
+ip VARCHAR(15),
+dns_type VARCHAR(25),
+cname VARCHAR(25),
+all_ip VARCHAR(15),
+is_main_ip tinyint(1) NOT NULL,
+is_used tinyint(1) NOT NULL DEFAULT=FALSE,
+src  VARCHAR(25),
+date_import datetime(6) NOT NULL DEFAULT="2000-11-11,
+
+
+`beschreibung` longtext DEFAULT NULL,
+`check` tinyint(1) NOT NULL,
+`is_active` tinyint(1) NOT NULL,
+`date_beg` date NOT NULL,
+`date_end` date NOT NULL,
+`date_created` datetime(6) NOT NULL,
+`date_modified` datetime(6) NOT NULL,
+`funktion` longtext DEFAULT NULL,
+`is_ansible` tinyint(1) NOT NULL,
+`ref_fqdn` varchar(240) DEFAULT NULL,
+
+
+
+
+
+
+
+
+
+
+
+]> show create table app_core_infra_server_id \G
+*************************** 1. row ***************************
+Table: app_core_infra_server_id
+Create Table: CREATE TABLE `app_core_infra_server_id` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`beschreibung` longtext DEFAULT NULL,
+`check` tinyint(1) NOT NULL,
+`is_active` tinyint(1) NOT NULL,
+`date_beg` date NOT NULL,
+`date_end` date NOT NULL,
+`date_created` datetime(6) NOT NULL,
+`date_modified` datetime(6) NOT NULL,
+`funktion` longtext DEFAULT NULL,
+`is_ansible` tinyint(1) NOT NULL,
+`ref_fqdn` varchar(240) DEFAULT NULL,
+PRIMARY KEY (`id`),
+. . .
+) ENGINE=InnoDB AUTO_INCREMENT=345 DEFAULT CHARSET=utf8
+
+
+DROP TABLE IF EXISTS ` app_core_infra_server_id`;
+CREATE TABLE `app_core_infra_server_id` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`beschreibung` longtext DEFAULT NULL,
+`check` tinyint(1) NOT NULL,
+`is_active` tinyint(1) NOT NULL,
+`date_beg` date NOT NULL,
+`date_end` date NOT NULL,
+`date_created` datetime(6) NOT NULL,
+`date_modified` datetime(6) NOT NULL,
+`funktion` longtext DEFAULT NULL,
+`is_ansible` tinyint(1) NOT NULL,
+`ref_fqdn` varchar(240) DEFAULT NULL,
+PRIMARY KEY (`id`),
+. . .
+) ENGINE=InnoDB AUTO_INCREMENT=345 DEFAULT CHARSET=utf8;
+
+
+
+> select id, ref_fqdn, funktion, is_ansible from app_core_infra_server_id where id = 1;
++----+-------------------------------+---------------------------+------------+
+| id | ref_fqdn                      | funktion                  | is_ansible |
++----+-------------------------------+---------------------------+------------+
+|  1 | server-abc.test.de           | abc-test                  |          0 |
+
+
+
