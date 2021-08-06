@@ -1,0 +1,15 @@
+
+Projekt: Learning Log – ein Online-Lerntagebuch
+
+
+Eine Spezifikation schreiben
+Eine vollständige Spezifikation erklärt die Projektziele, beschreibt den Funktionsumfang
+sowie das Erscheinungsbild und die Benutzeroberfläche
+
+https://docs.djangoproject.com/en/2.2/ref/ models/fields
+
+class Topic(models.Model):
+    text = models.CharField(max_length=200)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+
