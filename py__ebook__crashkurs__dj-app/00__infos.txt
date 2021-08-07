@@ -1,4 +1,47 @@
 
+# =============================================================================
+# open:
+
+18-4
+proj:   pizzeria
+
+app:    pizzas
+
+
+Projekt:    pizzeria
+
+App:        pizzas
+    Modell: Pizza
+                name    # Hawaii, Quatro Stagione, ...
+
+    Modell: Topping
+                pizza   # Fremdschlüssel für Pizza
+                name    # Ananas, Schinken, Artischocken, ...
+
+    Admin-Site: erstellen und geben Sie über diese Site einige
+Bezeichnungen für Pizzas und Beläge ein.
+
+Untersuchen Sie die eingegebenen Daten in der Shell
+
+# =============================================================================
+# open
+
+18-5 Menüplaner:
+
+project:    meal_planner
+app:        meal_plans
+            startseite erstellen
+
+# =============================================================================
+# open
+
+18-6 Pizzeria-Startseite:
+Fügen Sie dem Pizzeria-Projekt aus Übung 18-4 eine Startseite hinzu.
+
+# =============================================================================
+
+
+# =============================================================================
 Projekt: Learning Log – ein Online-Lerntagebuch
 
 
@@ -8,8 +51,140 @@ sowie das Erscheinungsbild und die Benutzeroberfläche
 
 https://docs.djangoproject.com/en/2.2/ref/ models/fields
 
-class Topic(models.Model):
-    text = models.CharField(max_length=200)
-    date_added = models.DateTimeField(auto_now_add=True)
+http://127.0.0.1:8000/admin/
+http://127.0.0.1:8000/admin/learning_logs/topic/
+
+class Topic(models.Model):        # chess, rock climbing
+    text        = models.CharField(max_length=200)
+    date_added  = models.DateTimeField(auto_now_add=True)
+
+class Entry(models.Model):
+    topic       = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    text        = models.TextField()
+    date_added  = models.DateTimeField(auto_now_add=True)
 
 
+# =============================================================================
+# python manage.py shell  -  https://docs.djangoproject.com/en/3.2/topics/db/queries/
+
+from learning_logs.models import Topic
+
+Topic.objects.all()          # alles instanzen ausgeben
+-->      <QuerySet [<Topic: Chess>, <Topic: Rock Climbing>]>
+
+topics = Topic.objects.all()
+for topic in topics:
+    print(topic.id, topic)
+-->      1 Chess
+-->      2 Rock Climbing
+
+
+t = Topic.objects.get(id=1)
+t.text
+-->      'Chess'
+
+t.date_added
+-->      datetime.datetime(2021, 8, 7, 11, 34, 34, 152018, tzinfo=<UTC>)
+
+print(t.id, t.text, t.date_added)
+
+# -----------------------------------------------------------------------------
+# ueber den Fremschluessel die eintraege abfragen:
+# Syntax: 
+# Um Daten über eine Fremdschlüsselbeziehung abzurufen, müssen Sie den Namen
+# des verknüpften Modells in Kleinbuchstaben gefolgt von einem Unterstrich
+# und dem Wort set angeben
+
+t.entry_set.all()
+-->      <QuerySet [<Entry: The...>, <Entry: In...>]>
+
+for z in t.entry_set.all():
+    print(z)
+-->      The opening is the first part of the game, roughly...
+-->      In the opening phase of the game, it▒s important t...
+
+
+# =============================================================================
+# Seiten erstellen: die Startseite von Learning Log
+
+1. URLs festlegen
+2. Views erstellen
+3. Template erstellen
+
+# -----------------------------------------------------------------------------
+# 1. URLs:  vi ../core/urls.py
+
+
+# ../core/urls.py
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('learning_logs.urls')),
+]
+
+
+# -----------------------------------------------------------------------------
+# 1. URLs:  vi ../learning_logs/urls.py
+
+# ../learnings_logs/urls.py
+
+from django.urls import path
+from . import views
+
+app_name = 'learning_logs'
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]
+
+
+"""
+urlpatterns:
+1. Argument von path:   ''      ->      http://127.0.0.1:8000/
+2. Argument von path:   gibt an, welche Funktion in views.py aufgerufen werden soll -> index() in views.py
+3. Argument von path:   gibt diesem URL-Muster den Namen index, sodass wir in anderen Codeabschnitten darauf verweisen können
+"""
+
+# -----------------------------------------------------------------------------
+# 2. views.py
+# Wenn eine URL-Anforderung mit dem zuvor definierten Muster übereinstimmt,
+# sucht Django in der Datei views.py nach der Ansichtsfunktion index() und übergibt
+# ihr das request-Objekt. Da wir hier keine Daten für die Seite verarbeiten
+# müssen, besteht der Code der Funktion nur aus dem Aufruf von render(). Diese
+# Funktion wiederum hat zwei Argumente, nämlich das ursprüngliche request-Objekt
+# und eine Vorlage, um die Seite aufzubauen. Diese Vorlage schreiben wir als Nächstes.
+
+
+# ../learnings_logs/views.py
+
+from django.shortcuts import render
+
+def index(request):
+    """The home page for Learning Log"""
+    return render(request, 'learning_logs/index.html')
+
+# -----------------------------------------------------------------------------
+# 3. template
+# mkdir ../learnings_logs/templates
+# mkdir ../learnings_logs/templates/learnings_logs
+# vi    ../learnings_logs/templates/learnings_logs/index.html
+
+
+
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+
+# =============================================================================
+Weitere Seiten erstellen
+
+Vererbung bei Vorlagen
+Die Elternvorlage
+
+
+
+
+# =============================================================================
