@@ -1,29 +1,5 @@
 
 # =============================================================================
-# open:
-
-18-4
-proj:   pizzeria
-
-app:    pizzas
-
-
-Projekt:    pizzeria
-
-App:        pizzas
-    Modell: Pizza
-                name    # Hawaii, Quatro Stagione, ...
-
-    Modell: Topping
-                pizza   # Fremdschlüssel für Pizza
-                name    # Ananas, Schinken, Artischocken, ...
-
-    Admin-Site: erstellen und geben Sie über diese Site einige
-Bezeichnungen für Pizzas und Beläge ein.
-
-Untersuchen Sie die eingegebenen Daten in der Shell
-
-# =============================================================================
 # open
 
 18-5 Menüplaner:

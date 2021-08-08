@@ -1,3 +1,7 @@
-from django.contrib import admin
+# ../app_pizza/admin.py
 
-# Register your models here.
+from django.contrib import admin
+from .models import Pizza, Topping
+
+admin.site.register(Pizza)
+admin.site.register(Topping)
