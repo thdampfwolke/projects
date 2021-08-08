@@ -182,9 +182,93 @@ def index(request):
 Weitere Seiten erstellen
 
 Vererbung bei Vorlagen
-Die Elternvorlage
+S. 461  Die Elternvorlage
 
+# -----------------------------------------------------------------------------
+# vi ../learnings_logs/templates/learnings_logs/base.html 
+#
+# Link zur Startseite:
+# <a href="{% url 'learning_logs:index' %}">Learning Log</a>
+#
+# Um einen Link anzulegen, verwenden wir ein Vorlagen-Tag innerhalb {% %}
+# In unserem Beispiel generiert
+#    {% url 'learning_logs:index'%}
+# eine URL, die dem URL-Muster index in learning_logs/urls.py entspricht
+#   app_name = 'learning_logs'
+#   urlpatterns = [ path('', views.index, name='index'), ]
+# Hierbei ist learning_logs der Namensraum und index ein in diesem Namensraum
+# eindeutig benanntes URL-Muster.
+# Der Namensraum stammt dabei aus dem Wert, den wir app_name in der Datei
+# learning_logs/urls.py zugewiesen haben.
+
+<p>
+    <a href="{% url 'learning_logs:index' %}">Learning Log</a>
+</p>
+
+{% block content %}
+{% endblock content %}
+
+# -----------------------------------------------------------------------------
+# vi ../learnings_logs/templates/learnings_logs/index.html 
+
+# S. 462    Die Kindvorlage
+
+# Als Nächstes müssen wir die Vorlage index.html so umschreiben, dass sie von
+# base.html erbt. Fügen Sie den folgenden Code zu index.html hinzu:
+
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+  <p>Learning Log helps you keep track of your learning, for any topic you're learning about.</p>
+{% endblock content %}
+
+
+# -----------------------------------------------------------------------------
+# S.463 Die Seite Topics  -  http://127.0.0.1:8000/topics/
+
+# -----------------------------------------------
+vi ../learning_logs/urls.py
+    path('topics/', views.topics, name='topics'),
+
+# -----------------------------------------------
+vi ../learning_logs/views.py
+
+
+# -----------------------------------------------
+
+
+# -----------------------------------------------
+
+# -----------------------------------------------
+
+
+
+
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
 
 
 
 # =============================================================================
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
