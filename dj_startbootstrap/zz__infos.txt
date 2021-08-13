@@ -1,0 +1,6 @@
+
+https://startbootstrap.com/theme/sb-admin-2
+
+https://medium.com/djangotube/tomdjango-use-startbootstrap-theme-in-project-50ae96ed2e0e
+
+https://github.com/hemanth-sp/django-startbootstrap-theme
