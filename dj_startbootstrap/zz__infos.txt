@@ -1,4 +1,29 @@
+# ============================================================================
+# href="        href="{% static 'bs4/       ' %}"
+# src="         src="{% static 'bs4/       ' %}"
 
+
+# ============================================================================
+# uebersicht
+
+../core/settings
+
+../app_core_server/
+../app_core_user/
+
+../app_web/         # http://127.0.0.1:8000/index.html      # startbootstrap -> bs4
+../app_web/server   # 
+../app_web/user     # 
+
+# ============================================================================
+#
+http://127.0.0.1:8000/admin
+http://127.0.0.1:8000/server/index.html
+http://127.0.0.1:8000/user/index.html
+
+
+
+# ============================================================================
 https://startbootstrap.com/theme/sb-admin-2
 
 https://medium.com/djangotube/tomdjango-use-startbootstrap-theme-in-project-50ae96ed2e0e
