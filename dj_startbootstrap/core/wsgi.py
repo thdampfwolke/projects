@@ -1,4 +1,4 @@
-../core/wsgi.py
+# ../core/wsgi.py
 
 import os
 
