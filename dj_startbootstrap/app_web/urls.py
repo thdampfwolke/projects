@@ -6,6 +6,7 @@ from . import views
 app_name = 'app_web'
 
 urlpatterns = [
+    path('tables.html', views.tables, name='tables'),
     path('', views.index, name='index'),
     # path('topics/', views.topics, name='topics'),
     # path('topics/<int:topic_id>/', views.topic, name='topic'),

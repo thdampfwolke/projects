@@ -10,6 +10,10 @@ def index(request):
     """hp: """
     return render(request, 'app_web/index.html')
 
+def tables(request):
+    """hp: """
+    return render(request, 'app_web/tables.html')
+    
 #
 # def topics(request):
 #     """Show all topics."""
