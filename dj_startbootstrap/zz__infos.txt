@@ -11,13 +11,18 @@
 ../app_core_server/
 ../app_core_user/
 
-../app_web/         # http://127.0.0.1:8000/index.html      # startbootstrap -> bs4
+../app_web/         # startbootstrap -> bs4
 ../app_web/server   # 
 ../app_web/user     # 
 
 # ============================================================================
 #
 http://127.0.0.1:8000/admin
+
+http://127.0.0.1:8000/
+http://127.0.0.1:8000/index.html
+http://127.0.0.1:8000/tables.html
+
 http://127.0.0.1:8000/server/index.html
 http://127.0.0.1:8000/user/index.html
 

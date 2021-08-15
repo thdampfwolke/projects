@@ -1,13 +1,19 @@
 # ../app_core_server/urls.py
 
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import path
+from django.views.generic.base import RedirectView
+
 from . import views
+
 
 app_name = 'app_core_server'
 
 urlpatterns = [
     # path('', views.index, name='index'),
     path('index.html', views.index, name='index'),
+    path("favicon.ico", RedirectView.as_view(
+        url=staticfiles_storage.url("favicon.ico"))),
     # path('topics/', views.topics, name='topics'),
     # path('topics/<int:topic_id>/', views.topic, name='topic'),
     # # Seite zum Hinzufügen neuer Fachgebiete

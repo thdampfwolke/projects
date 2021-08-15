@@ -1,0 +1,74 @@
+# ============================================================================
+>>> python manage.py shell
+
+# ----------------------------------------------------------------------------
+from app_core_user.models import User
+
+# -----------------------------------------------
+dir(User)
+
+# -----------------------------------------------
+>>> help(User)
+Help on class User in module app_core_user.models:
+
+class User(django.db.models.base.Model)
+ |  User(*args, **kwargs)
+ |nname, vname, geb, email, is_active, date_beg, date_end, date_created, date_modified
+ |  User(id, )
+
+# ----------------------------------------------------------------------------
+>>> User.objects.all()  # models.py: def __str__(self): return f"{self.id}, {self.nname}, {self.vname}"
+
+<QuerySet [
+    <User: 1, nname_user_01, vname_user_01>, 
+    <User: 2, nname_user_02, vname_user_02>, 
+    <User: 3, nname_user_03, vname_user_03>, 
+    <User: 4, nname_user_04, vname_user_04>, 
+    <User: 5, nname_user_05, vname_user_05>]>
+
+# -----------------------------------------------
+>>> for i in User.objects.all():
+        print(i)
+
+# ----------------------------------------------------------------------------
+>>> User.objects.get(id=1)
+
+<User: 1, nname_user_01, vname_user_01>
+
+# -----------------------------------------------
+>>> u = User.objects.get(id=1)
+>>> print(u.id, u.nname, u.vname, u.geb, u.email, u.is_active, u.date_beg, u.date_end, u.date_created, u.date_modified)
+
+1 nname_user_01 vname_user_01 2001-08-14 nname_user_01@test.de True 2021-08-14 2099-12-31 2021-08-14 13:47:29.655436+00:00 2021-08-14 13:47:29.655436+00:00
+
+# ----------------------------------------------------------------------------
+>>> u.z_user2userid_set.all()   # abfrage: alle datensaetze in der (User.objects.get(id=1)) id 1 vorkommt
+
+<QuerySet [
+    <Z_user2userid: 1, 1, nname_user_01, vname_user_01, 1, uid-01>,
+    <Z_user2userid: 2, 1, nname_user_01, vname_user_01, 6, uid-01-a>,
+    <Z_user2userid: 3, 1, nname_user_01, vname_user_01, 7, uid-01-b>,
+    <Z_user2userid: 4, 1, nname_user_01, vname_user_01, 8, uid-01-c>
+    ]>
+
+
+# ============================================================================
+>>> from app_core_user.models import UserId
+
+# ----------------------------------------------------------------------------
+>>> UserId.objects.all()
+>>> UserId.objects.get(id=1)
+
+# ----------------------------------------------------------------------------
+>>> uid = UserId.objects.get(id=2)
+
+>>> uid
+<UserId: 2, uid-02>
+
+>>> uid.z_user2userid_set.all()     # abfrage: alle datensaetze in der (UserId.objects.get(id=2)) id 2 vorkommt
+<QuerySet [<Z_user2userid: 5, 2, nname_user_02, vname_user_02, 2, uid-02>]>
+
+
+# ============================================================================
+# ----------------------------------------------------------------------------
+# -----------------------------------------------
