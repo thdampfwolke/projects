@@ -2,6 +2,12 @@
 # href="        href="{% static 'bs4/       ' %}"
 # src="         src="{% static 'bs4/       ' %}"
 
+# ============================================================================
+# ebook
+
+k18    437 - 471
+k19    473 - 505
+k20    506 - 539
 
 # ============================================================================
 # uebersicht
@@ -24,8 +30,11 @@ http://127.0.0.1:8000/index.html
 http://127.0.0.1:8000/tables.html
 
 http://127.0.0.1:8000/server/index.html
-http://127.0.0.1:8000/user/index.html
 
+http://127.0.0.1:8000/user/index.html			# stat.
+http://127.0.0.1:8000/user/index_02.html		# stat. + base.html
+http://127.0.0.1:8000/user/index_03_user.html		# db: abfr: user
+http://127.0.0.1:8000/user/index_04_userid.html		# db: abfr: userid
 
 
 # ============================================================================

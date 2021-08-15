@@ -11,7 +11,11 @@ app_name = 'app_core_user'
 urlpatterns = [
     # path('', views.index, name='index'),
     path('index.html', views.index, name='index'),
-    path("favicon.ico", RedirectView.as_view(url=staticfiles_storage.url("favicon.ico"))),
+    path('index_02.html', views.index_02, name='index_02'),
+    path('index_03_user.html', views.index_03_user, name='index_03_user'),
+    path('index_04_userid.html', views.index_04_userid, name='index_04_userid'),
+    path("favicon.ico", RedirectView.as_view(
+        url=staticfiles_storage.url("favicon.ico"))),
     # path('topics/', views.topics, name='topics'),
     # path('topics/<int:topic_id>/', views.topic, name='topic'),
     # # Seite zum Hinzufügen neuer Fachgebiete

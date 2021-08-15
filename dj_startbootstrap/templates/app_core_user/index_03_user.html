@@ -1,0 +1,13 @@
+{% extends "app_core_user/base.html" %}
+
+{% block content %}
+
+<ul>
+{% for user in users %}
+    <li>{{ user }}</li>
+{% empty %}
+    <li>No topics have been added yet.</li>
+{% endfor %}
+</ul>
+
+{% endblock content %}

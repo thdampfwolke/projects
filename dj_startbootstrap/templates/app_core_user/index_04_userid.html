@@ -1,0 +1,13 @@
+{% extends "app_core_user/base.html" %}
+
+{% block content %}
+
+<ul>
+{% for userid in userids %}
+    <li>{{ userid }}</li>
+{% empty %}
+    <li>keine Eintraege vorhanden</li>
+{% endfor %}
+</ul>
+
+{% endblock content %}
