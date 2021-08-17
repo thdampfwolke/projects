@@ -1,6 +1,8 @@
 # ../core/settings.py
 
 from pathlib import Path
+# from django.urls import reverse
+
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

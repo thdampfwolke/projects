@@ -6,8 +6,46 @@
 {% for user in users %}
     <li>{{ user }}</li>
 {% empty %}
-    <li>No topics have been added yet.</li>
+    <li>keine Eintraege vorhanden</li>
 {% endfor %}
 </ul>
+
+<br>
+
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        }
+    </style>
+    <table>
+        <tr>
+          <th>01</th>
+          <th>02</th>
+          <th>03</th>
+          <th>04</th>
+          <th>05</th>
+          <th>06</th>
+          <th>07</th>
+          <th>08</th>
+          <th>09</th>
+          <th>10</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td> {{ user.id }} </td>
+            <td> {{ user.nname }} </td>
+            <td> {{ user.vname }} </td>
+            <td> {{ user.geb }} </td>
+            <td> {{ user.mail }} </td>
+            <td> {{ user.is_active }} </td>
+            <td> {{ user.date_beg }} </td>
+            <td> {{ user.date_end }} </td>
+            <td> {{ user.date_created }} </td>
+            <td> {{ user.date_modified }} </td>
+        </tr>
+        {% empty %}
+            <li>keine Eintraege vorhanden</li>
+        {% endfor %}
+    </table> 
 
 {% endblock content %}

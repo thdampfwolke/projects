@@ -14,6 +14,7 @@ urlpatterns = [
     path('index_02.html', views.index_02, name='index_02'),
     path('index_03_user.html', views.index_03_user, name='index_03_user'),
     path('index_04_userid.html', views.index_04_userid, name='index_04_userid'),
+    # path('index_05/<int:user_id>/', views.index_05_user2userid, name='index_05_user2userid'),
     path("favicon.ico", RedirectView.as_view(
         url=staticfiles_storage.url("favicon.ico"))),
     # path('topics/', views.topics, name='topics'),

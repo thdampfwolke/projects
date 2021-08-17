@@ -10,4 +10,36 @@
 {% endfor %}
 </ul>
 
+<br>
+
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        }
+    </style>
+    <table>
+        <tr>
+          <th>01</th>
+          <th>02</th>
+          <th>03</th>
+          <th>04</th>
+          <th>05</th>
+          <th>06</th>
+          <th>07</th>
+        </tr>
+        {% for userid in userids %}
+        <tr>
+            <td> {{ userid.id }} </td>
+            <td> {{ userid.uid }} </td>
+            <td> {{ userid.is_active }} </td>
+            <td> {{ userid.date_beg }} </td>
+            <td> {{ userid.date_end }} </td>
+            <td> {{ userid.date_created }} </td>
+            <td> {{ userid.date_modified }} </td>
+        </tr>
+        {% empty %}
+            <li>keine Eintraege vorhanden</li>
+        {% endfor %}
+    </table> 
+
 {% endblock content %}
