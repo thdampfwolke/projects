@@ -1,23 +1,31 @@
+https://django-book.readthedocs.io/en/latest/chapter10.html
+
+https://tutorial.djangogirls.org/de/django_orm/     # Django-ORM und QuerySets
+
 # ============================================================================
 >>> python manage.py shell
 
+# ============================================================================
+# 01. class: User
 # ----------------------------------------------------------------------------
-from app_core_user.models import User
+
+>>> from app_core_user.models import User
 
 # -----------------------------------------------
-dir(User)
+>>> dir(User)
 
 # -----------------------------------------------
 >>> help(User)
-Help on class User in module app_core_user.models:
 
+Help on class User in module app_core_user.models:
 class User(django.db.models.base.Model)
  |  User(*args, **kwargs)
  |nname, vname, geb, email, is_active, date_beg, date_end, date_created, date_modified
  |  User(id, )
 
 # ----------------------------------------------------------------------------
->>> User.objects.all()  # models.py: def __str__(self): return f"{self.id}, {self.nname}, {self.vname}"
+>>> User.objects.all()  # models.py: def __str__(self): return f"{self.id},
+                                    {self.nname}, {self.vname}"
 
 <QuerySet [
     <User: 1, nname_user_01, vname_user_01>, 
@@ -51,8 +59,49 @@ class User(django.db.models.base.Model)
     <Z_user2userid: 4, 1, nname_user_01, vname_user_01, 8, uid-01-c>
     ]>
 
+# ----------------------------------------------------------------------------
+>>> for i in u.z_user2userid_set.all():
+        print(i)
+            ...
+            1, 1, nname_user_01, vname_user_01, 1, uid-01
+            2, 1, nname_user_01, vname_user_01, 6, uid-01-a
+            3, 1, nname_user_01, vname_user_01, 7, uid-01-b
+            4, 1, nname_user_01, vname_user_01, 8, uid-01-c
+
 
 # ============================================================================
+
+>> t = u.z_user2userid_set.all()
+
+>>> t
+    <QuerySet [
+        <Z_user2userid: 1, 1, nname_user_01, vname_user_01, 1, uid-01>,
+        <Z_user2userid: 2, 1, nname_user_01, vname_user_01, 6, uid-01-a>,
+        <Z_user2userid: 3, 1, nname_user_01, vname_user_01, 7, uid-01-b>,
+        <Z_user2userid: 4, 1, nname_user_01, vname_user_01, 8, uid-01-c>]>
+
+# ----------------------------------------------------------------------------
+>>> for i in t:
+...     print(i)
+            ...
+            1, 1, nname_user_01, vname_user_01, 1, uid-01
+            2, 1, nname_user_01, vname_user_01, 6, uid-01-a
+            3, 1, nname_user_01, vname_user_01, 7, uid-01-b
+            4, 1, nname_user_01, vname_user_01, 8, uid-01-c
+
+# ----------------------------------------------------------------------------
+>>> type(t)     # <class 'django.db.models.query.QuerySet'>
+>>> type(i)     # <class 'app_core_user.models.Z_user2userid'>
+
+>>> print(t[0])     # 1, 1, nname_user_01, vname_user_01, 1, uid-01
+>>> print(t[1])     # 2, 1, nname_user_01, vname_user_01, 6, uid-01-a
+>>> len(t)          # 4
+
+
+# ============================================================================
+# 02. class: UserId
+# ----------------------------------------------------------------------------
+
 >>> from app_core_user.models import UserId
 
 # ----------------------------------------------------------------------------
@@ -62,13 +111,212 @@ class User(django.db.models.base.Model)
 # ----------------------------------------------------------------------------
 >>> uid = UserId.objects.get(id=2)
 
->>> uid
-<UserId: 2, uid-02>
+>>> uid         # <UserId: 2, uid-02>
 
 >>> uid.z_user2userid_set.all()     # abfrage: alle datensaetze in der (UserId.objects.get(id=2)) id 2 vorkommt
 <QuerySet [<Z_user2userid: 5, 2, nname_user_02, vname_user_02, 2, uid-02>]>
 
 
 # ============================================================================
+# 03. class: Z_user2userid
 # ----------------------------------------------------------------------------
+#
+# ueber den Fremschluessel die eintraege abfragen:
+# Um Daten über eine Fremdschlüsselbeziehung abzurufen:
+# Name des verknüpften Modells in Kleinbuchstaben
+# gefolgt von einem Unterstrich und dem Wort set
+# ----------------------------------------------------------------------------
+# class User(models.Model)
+# class UserId(models.Model)
+# class Z_user2userid(models.Model):    t2t_user, t2t_userid
+# ----------------------------------------------------------------------------
+
+>>> from app_core_user.models import Z_user2userid
+
+>>> help(Z_user2userid)
+    . . .
+        Z_user2userid(id, t2t_user, t2t_userid, is_active, date_beg, date_end, date_created, date_modified)
+    . . .
+
+# ----------------------------------------------------------------------------
+
+u = User.objects.all()
+u2id = 
+
+
+# ============================================================================
+# 04. class: User (Z_user2userid)
+# ----------------------------------------------------------------------------
+
+$$$ python manage.py shell
+
+>>> from app_core_user.models import User
+
+>>> u = User.objects.get(id=1)
+        <User: 1, nname_user_01, vname_user_01>
+
+>>> t = u.z_user2userid_set.all()
+    <QuerySet [
+        <Z_user2userid: 1, 1, nname_user_01, vname_user_01, 1, uid-01>,
+        <Z_user2userid: 2, 1, nname_user_01, vname_user_01, 6, uid-01-a>,
+        <Z_user2userid: 3, 1, nname_user_01, vname_user_01, 7, uid-01-b>,
+        <Z_user2userid: 4, 1, nname_user_01, vname_user_01, 8, uid-01-c>]>
+
+>>> a = []
+>>> a += t
+
+>>> a
+        [
+        <Z_user2userid: 1, 1, nname_user_01, vname_user_01, 1, uid-01>, 
+        <Z_user2userid: 2, 1, nname_user_01, vname_user_01, 6, uid-01-a>,
+        <Z_user2userid: 3, 1, nname_user_01, vname_user_01, 7, uid-01-b>,
+        <Z_user2userid: 4, 1, nname_user_01, vname_user_01, 8, uid-01-c>]
+
+>>> for i in a:
+...     print(i)
+...
+1, 1, nname_user_01, vname_user_01, 1, uid-01
+2, 1, nname_user_01, vname_user_01, 6, uid-01-a
+3, 1, nname_user_01, vname_user_01, 7, uid-01-b
+4, 1, nname_user_01, vname_user_01, 8, uid-01-c
+
+
+>>> for i in t:
+...     print(i)
+...
+1, 1, nname_user_01, vname_user_01, 1, uid-01
+2, 1, nname_user_01, vname_user_01, 6, uid-01-a
+3, 1, nname_user_01, vname_user_01, 7, uid-01-b
+4, 1, nname_user_01, vname_user_01, 8, uid-01-c
+
+
+>>> type(t) # <class 'django.db.models.query.QuerySet'>
+>>> type(a) # <class 'list'>
+>>> type(i) # <class 'app_core_user.models.Z_user2userid'>
+
+>>> len(t)  # 4
+>>> len(a)  # 4
+
+>>> a[0]    # <Z_user2userid: 1, 1, nname_user_01, vname_user_01, 1, uid-01>
+>>> a[1]    # <Z_user2userid: 2, 1, nname_user_01, vname_user_01, 6, uid-01-a>
+
+# ----------------------------------------------------------------------------
+>>> i   # <Z_user2userid: 4, 1, nname_user_01, vname_user_01, 8, uid-01-
+
+>>> i.t2t_user  # <User: 1, nname_user_01, vname_user_01>
+>>> i.t2t_user.id   # 1
+>>> i.t2t_user.nname    # nname_user_01
+>>> i.t2t_user.vname    # vname_user_01
+
+>>> i.t2t_userid    # <UserId: 8, uid-01-c>
+>>> i.t2t_userid.id # 8
+>>> i.t2t_userid.uid    # 'uid-01-c'
+
+
+# ============================================================================
+# 10. https://tutorial.djangogirls.org/de/django_orm/       # Django-ORM und QuerySets
+# ----------------------------------------------------------------------------
+
+>>> from blog.models import Post
+
+# ----------------------------------------------------------------------------
+# alle Objekte ansehen:
+
+>>> Post.objects.all()
+        <QuerySet [<Post: my post title>, <Post: another post title>]>
+
+# ----------------------------------------------------------------------------
+# Objekt erstellen:
+
+>>> from django.contrib.auth.models import User
+
+>>> User.objects.all()
+    <QuerySet [<User: ola>]>
+
 # -----------------------------------------------
+# Instanz des Users erstellen und Posts hinzufuegen
+
+>>> me = User.objects.get(username='ola')
+
+>>> Post.objects.create(author=me, title='Sample title', text='Test')
+    <Post: Sample title>
+
+>>> Post.objects.all()
+    <QuerySet [
+        <Post: my post title>,
+        <Post: another post title>,
+        <Post: Sample title>]>
+
+>>> post = Post.objects.get(title="Sample title")
+>>> post.publish()
+
+
+# ----------------------------------------------------------------------------
+# in die DB schreiben:
+#
+# 1. Als Erstes holen wir eine Instanz des Posts, den wir veröffentlichen wollen
+# 2. Dann publizieren wir ihn mit unserer publish-Methode
+
+>>> post = Post.objects.get(title="Sample title")
+>>> post.publish()
+
+
+# ----------------------------------------------------------------------------
+# Objekte filtern:
+#
+# Anmerkung:
+# Zwischen title und contains befinden sich zwei Unterstriche (__).
+# Das ORM von Django nutzt diese Regel, um
+# Feldnamen ("title") und Operationen oder Filter ("contains") voneinander zu trennen.
+
+# -----------------------------------------------
+>>> Post.objects.filter(author=me)
+    <QuerySet [
+        <Post: Sample title>,
+        <Post: Post number 2>,
+        <Post: My 3rd post!>,
+        <Post: 4th title of post>]>
+
+>>> Post.objects.filter(title__contains='title')
+    <QuerySet [
+        <Post: Sample title>,
+        <Post: 4th title of post>]>
+
+# -----------------------------------------------
+>>> from django.utils import timezone
+
+>>> Post.objects.filter(published_date__lte=timezone.now())
+    <QuerySet [
+        <Post: Sample title>]>
+
+
+# ----------------------------------------------------------------------------
+# Objekte ordnen
+
+>>> Post.objects.order_by('created_date')
+    <QuerySet [
+        <Post: Sample title>,
+        <Post: Post number 2>,
+        <Post: My 3rd post!>,
+        <Post: 4th title of post>]>
+
+>>> Post.objects.order_by('-created_date')
+    <QuerySet [
+        <Post: 4th title of post>,
+        <Post: My 3rd post!>,
+        <Post: Post number 2>,
+        <Post: Sample title>]>
+
+# ----------------------------------------------------------------------------
+# Komplexe Queries durch Methoden-Verkettung
+
+>>> from django.utils import timezone
+
+>>> Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    <QuerySet [
+        <Post: Post number 2>,
+        <Post: My 3rd post!>,
+        <Post: 4th title of post>,
+        <Post: Sample title>]>
+
+# ----------------------------------------------------------------------------
