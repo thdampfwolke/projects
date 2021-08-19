@@ -19,29 +19,21 @@
     </style>
     <table>
         <tr>
+          <th>id</th>
           <th>user.id</th>
           <th>user.nname</th>
           <th>user.vname</th>
-          <th>user.geb</th>
-          <th>user.mail</th>
-          <th>user.is_active</th>
-          <th>user.date_beg</th>
-          <th>user.date_end</th>
-          <th>user.date_created</th>
-          <th>user.date_modified</th>
+          <th>userid.id</th>
+          <th>userid.uid</th>
         </tr>
         {% for user in users %}
         <tr>
             <td> {{ user.id }} </td>
-            <td> {{ user.nname }} </td>
-            <td> {{ user.vname }} </td>
-            <td> {{ user.geb }} </td>
-            <td> {{ user.mail }} </td>
-            <td> {{ user.is_active }} </td>
-            <td> {{ user.date_beg }} </td>
-            <td> {{ user.date_end }} </td>
-            <td> {{ user.date_created }} </td>
-            <td> {{ user.date_modified }} </td>
+            <td> {{ user.t2t_user.id }} </td>
+            <td> {{ user.t2t_user.nname }} </td>
+            <td> {{ user.t2t_user.vname }} </td>
+            <td> {{ user.t2t_userid.id }} </td>
+            <td> {{ user.t2t_userid.uid }} </td>
         </tr>
         {% empty %}
             <li>keine Eintraege vorhanden</li>

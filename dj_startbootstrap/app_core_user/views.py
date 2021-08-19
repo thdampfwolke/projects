@@ -2,7 +2,7 @@
 
 from django.shortcuts import render, redirect
 
-from .models import User, UserId
+from .models import User, UserId, Z_user2userid
 # from .forms import TopicForm, EntryForm
 
 
@@ -30,6 +30,14 @@ def index_04_userid(request):
     return render(request, 'app_core_user/index_04_userid.html', context)
 
 
+def index_05_user2userid(request):
+    """hp: index_05_user2userid.html  -  abfrage: """
+    users = Z_user2userid.objects.order_by('id')
+    context = {'users': users}
+    return render(request, 'app_core_user/index_05_user2userid.html', context)
+
+# path('index_05_user2userid.html', views.index_05_user2userid, name='index_05_user2userid'),
+
 # def index_05_userid(request, userid_id):
 #    """hp: index_05/<int:user_id>  -  abfrage: alle userids"""
 #    userid = UserId.objects.get(id=userid_id)
@@ -38,11 +46,11 @@ def index_04_userid(request):
 #    return render(request, 'app_core_user/index_04_userid.html', context)
 
 
-#def index_05_user2userid(request, user_id):
+# def index_05_user2userid(request, user_id):
 #    """hp: ...  -  abfrage: """
 #    user = User.objects.get(id=user_id)
 #    userids = user.uid_set.order_by('-date_added')
 ##    context = {'userids': userids}
-##    return render(request, 'app_core_user/index_04_userid.html', context)
+# return render(request, 'app_core_user/index_04_userid.html', context)
 
 # path('index_05/<int:user_id>/', views.index_05_userid, name='index_05_userid'),
