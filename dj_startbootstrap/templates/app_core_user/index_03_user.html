@@ -10,12 +10,25 @@
 {% endfor %}
 </ul>
 
+
+<ul>
+    {% for user in users %}
+        <li>
+        <a href="{% url 'app_core_user:index_06_user' user.id %}">{{ user.nname }}, {{ user.vname }}</a>
+        </li>
+    {% empty %}
+        <li>keine Eintraege vorhanden</li>
+    {% endfor %}
+    </ul>
+
+
 <br>
 
     <style>
         table, th, td {
         border: 1px solid black;
         }
+
     </style>
     <table>
         <tr>
@@ -33,6 +46,7 @@
         {% for user in users %}
         <tr>
             <td> {{ user.id }} </td>
+            <td> <a href="{% url 'app_core_user:index_06_user' user.id %}"> {{ user.nname }} </a></td>
             <td> {{ user.nname }} </td>
             <td> {{ user.vname }} </td>
             <td> {{ user.geb }} </td>
