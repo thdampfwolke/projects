@@ -18,6 +18,13 @@ urlpatterns = [
          name='index_05_user2userid'),
     path('index_06/<int:user_id>/', views.index_06_user, name='index_06_user'),
     #
+    # Seite zum Hinzufügen neuer User
+    path('index_13_user_new/', views.index_13_user_new, name='index_13_user_new'),
+    #path('new_topic/', views.new_topic, name='new_topic'),
+    #
+    # Seite zum Hinzufügen neuer Fachgebiete - S. 480
+    #path('new_entry/<int:topic_id>/', views.new_entry, name='new_entry'),
+    #
     path("favicon.ico", RedirectView.as_view(
         url=staticfiles_storage.url("favicon.ico"))),
     # path('topics/', views.topics, name='topics'),

@@ -3,6 +3,7 @@
 from django.shortcuts import render, redirect
 
 from .models import User, UserId, Z_user2userid
+from .forms import UserForm
 # from .forms import TopicForm, EntryForm
 
 
@@ -45,3 +46,39 @@ def index_06_user(request, user_id):
     context = {'userid': userid, 'userids': userids}
     return render(request, 'app_core_user/index_06_user.html', context)
 
+
+def index_13_user_new(request):
+    """Add a new user"""
+    if request.method != 'POST':
+        # Keine Daten übermittelt; es wird ein leeres Formular erstellt
+        form = UserForm()
+    else:
+        # POST-Daten übermittelt; Daten werden verarbeitet
+        form = UserForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app_core_user:index_03_user')
+
+    # Zeigt ein leeres oder ein als ungültiges erkanntes Formular an.
+    context = {'form': form}
+    return render(request, 'app_core_user/index_13_user_new', context)
+
+
+#    path('index_13_user_new/', views.index_13_user_new, name='index_13_user_new'),
+
+
+# def new_topic(request):
+#    """Add a new topic."""
+#    if request.method != 'POST':
+#        # Keine Daten übermittelt; es wird ein leeres Formular erstellt
+#        form = TopicForm()
+#    else:
+#        # POST-Daten übermittelt; Daten werden verarbeitet
+#        form = TopicForm(data=request.POST)
+#        if form.is_valid():
+#            form.save()
+#            return redirect('learning_logs:topics')
+#
+#    # Zeigt ein leeres oder ein als ungültiges erkanntes Formular an.
+#    context = {'form': form}
+#    return render(request, 'learning_logs/new_topic.html', context)
