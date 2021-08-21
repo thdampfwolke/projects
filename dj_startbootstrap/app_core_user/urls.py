@@ -17,7 +17,7 @@ urlpatterns = [
     path('index_05_user2userid.html', views.index_05_user2userid,
          name='index_05_user2userid'),
     #
-    # path('index_06/<int:user_id>/', views.index_05_user2userid, name='index_05_user2userid'),
+    path('index_06/<int:user_id>/', views.index_06_user, name='index_06_user'),
     #
     path("favicon.ico", RedirectView.as_view(
         url=staticfiles_storage.url("favicon.ico"))),

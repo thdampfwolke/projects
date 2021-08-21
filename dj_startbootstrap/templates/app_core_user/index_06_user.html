@@ -1,0 +1,66 @@
+{% extends "app_core_user/base.html" %}
+
+{% block content %}
+
+<!-- context = {'userid': userid, 'userids': userids} -->
+<!-- http://127.0.0.1:8000/user/index_06/1/ -->
+
+<p>Userid: {{ userid }}</p>
+<p>userids:</p>
+<ul>
+    {% for i in userids %}
+    <li>
+        {{ i }}
+        {{ i.t2t_user }}
+        {{ i.t2t_user.id }}
+        {{ i.t2t_user.nname }}
+        {{ i.t2t_user.vname }}
+        {{ i.t2t_userid }}
+        {{ i.t2t_userid.id }}
+        {{ i.t2t_userid.uid }}
+        {{ i | linebreaks }}
+        <hr>
+    </li>
+    {% empty %}
+        <li>keine Eintraege vorhanden ({{ userid }})</li>
+    {% endfor %}
+</ul>
+
+<br>
+
+    <style>
+        table, th, td {
+        border: 1px solid black;
+        }
+    </style>
+    <table>
+        <tr>
+          <th>i</th>
+          <th>i.t2t_user</th>
+          <th>i.t2t_user.id</th>
+          <th>i.t2t_user.nname</th>
+          <th>i.t2t_user.vname</th>
+          <th>i.t2t_userid</th>
+          <th>i.t2t_userid.id</th>
+          <th>i.t2t_userid.uid</th>
+        </tr>
+        {% for i in userids %}
+        <tr>
+            <td> {{ i }} </td>
+            <td> {{ i.t2t_user }} </td>
+            <td> {{ i.t2t_user.id }} </td>
+            <td> {{ i.t2t_user.nname }} </td>
+            <td> {{ i.t2t_user.vname }} </td>
+            <td> {{ i.t2t_userid }} </td>
+            <td> {{ i.t2t_userid.id }} </td>
+            <td> {{ i.t2t_userid.uid }} </td>
+        </tr>
+        {% empty %}
+            <li>keine Eintraege vorhanden</li>
+        {% endfor %}
+    </table> 
+
+
+
+
+{% endblock content %}

@@ -36,21 +36,12 @@ def index_05_user2userid(request):
     context = {'users': users}
     return render(request, 'app_core_user/index_05_user2userid.html', context)
 
-# path('index_05_user2userid.html', views.index_05_user2userid, name='index_05_user2userid'),
 
-# def index_05_userid(request, userid_id):
-#    """hp: index_05/<int:user_id>  -  abfrage: alle userids"""
-#    userid = UserId.objects.get(id=userid_id)
-#    entries = userid.uid_set.order_by('-date_added')
-#    context = {'userids': userids}
-#    return render(request, 'app_core_user/index_04_userid.html', context)
+def index_06_user(request, user_id):
+    """hp: index_06/<int:user_id>  -  abfrage: einzelne user durch die user_id"""
+    userid = User.objects.get(id=user_id)
+    userids = userid.z_user2userid_set.all()
+    #userids = userid.z_user2userid_set.order_by('-date_added')
+    context = {'userid': userid, 'userids': userids}
+    return render(request, 'app_core_user/index_06_user.html', context)
 
-
-# def index_05_user2userid(request, user_id):
-#    """hp: ...  -  abfrage: """
-#    user = User.objects.get(id=user_id)
-#    userids = user.uid_set.order_by('-date_added')
-##    context = {'userids': userids}
-# return render(request, 'app_core_user/index_04_userid.html', context)
-
-# path('index_05/<int:user_id>/', views.index_05_userid, name='index_05_userid'),
