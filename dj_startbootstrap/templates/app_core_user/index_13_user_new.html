@@ -1,0 +1,14 @@
+{% extends "app_core_user/base.html" %}
+
+{% block content %}
+
+<p>Add a new User:</p>
+<form action="{% url 'app_core_user:index_13_user_new' %}" method='post'>
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <button name="submit">Add User</button>
+</form>
+
+{% endblock content %}

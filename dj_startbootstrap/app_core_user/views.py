@@ -61,7 +61,7 @@ def index_13_user_new(request):
 
     # Zeigt ein leeres oder ein als ungültiges erkanntes Formular an.
     context = {'form': form}
-    return render(request, 'app_core_user/index_13_user_new', context)
+    return render(request, 'app_core_user/index_13_user_new.html', context)
 
 
 #    path('index_13_user_new/', views.index_13_user_new, name='index_13_user_new'),

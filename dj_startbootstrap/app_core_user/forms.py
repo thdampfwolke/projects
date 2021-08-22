@@ -8,8 +8,19 @@ from .models import User
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['nname', 'vname']
-        labels = {'nname': '', 'vname': ''}		# keine beschriftung
+
+        fields = ['nname', 'vname', 'geb', 'email',
+                  'is_active', 'date_beg', 'date_end']
+
+        labels = {
+            'nname': 'nname',
+            'vname': 'vname',
+            'geb': 'geb (yyyy-mm-dd)',
+            'email': 'email',
+            'is_active': 'is_active',
+            'date_beg': 'date_beg (yyyy-mm-dd)',
+            'date_end': 'date_end (yyyy-mm-dd)'
+        }
 
     ## id = int
     #nname = models.CharField(max_length=32, null=False)
