@@ -65,6 +65,7 @@ class Z_user2userid(models.Model):
     def __str__(self):
         return f"{self.id}, {self.t2t_user}, {self.t2t_userid}"
 
+# id, t2t_user.id, t2t_user.nname, t2t_user.vname, t2t_userid.id, t2t_userid.uid
 
 # # ----------------------------------------------------------------------------
 # # open: 26.04.2021
