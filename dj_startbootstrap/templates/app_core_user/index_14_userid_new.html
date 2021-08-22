@@ -1,0 +1,14 @@
+{% extends "app_core_user/base.html" %}
+
+{% block content %}
+
+<p>Add a new UserId:</p>
+<form action="{% url 'app_core_user:index_14_userid_new' %}" method='post'>
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <button name="submit">Add UserId</button>
+</form>
+
+{% endblock content %}

@@ -3,7 +3,7 @@
 from django.shortcuts import render, redirect
 
 from .models import User, UserId, Z_user2userid
-from .forms import UserForm
+from .forms import UserForm, UserIdForm
 # from .forms import TopicForm, EntryForm
 
 
@@ -64,8 +64,24 @@ def index_13_user_new(request):
     return render(request, 'app_core_user/index_13_user_new.html', context)
 
 
-#    path('index_13_user_new/', views.index_13_user_new, name='index_13_user_new'),
+def index_14_userid_new(request):
+    """Add a new userid"""
+    if request.method != 'POST':
+        # Keine Daten übermittelt; es wird ein leeres Formular erstellt
+        form = UserIdForm()
+    else:
+        # POST-Daten übermittelt; Daten werden verarbeitet
+        form = UserIdForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app_core_user:index_04_userid')
 
+    # Zeigt ein leeres oder ein als ungültiges erkanntes Formular an.
+    context = {'form': form}
+    return render(request, 'app_core_user/index_14_userid_new.html', context)
+
+
+#   path('index_13_user_new/', views.index_13_user_new, name='index_13_user_new'),
 
 # def new_topic(request):
 #    """Add a new topic."""
