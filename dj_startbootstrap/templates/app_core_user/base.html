@@ -19,6 +19,14 @@
     <a href="http://127.0.0.1:8000/user/index_06/1/">index_06_user</a> - 
     <a href="http://127.0.0.1:8000/user/index_13_user_new/">index_13_user_new</a> - 
     <a href="http://127.0.0.1:8000/user/index_14_userid_new/">index_14_userid_new</a> - 
+
+    {% if user.is_authenticated %}
+        Hello, {{ user.username }}
+        <a href="{% url 'app_users:logout' %}">Log out</a>
+    {% else %}
+        <a href="{% url 'app_users:register' %}">Register</a> -
+        <a href="{% url 'app_users:login' %}">Log in</a>
+    {% endif %}
 </p>
 
 <body>
