@@ -13,7 +13,7 @@ urlpatterns = [
     # Seite zum Hinzufügen neuer Fachgebiete
     path('new_topic/', views.new_topic, name='new_topic'),
     #
-    # Seite zum Hinzufügen neuer Fachgebiete
+    # Seite zum Hinzufügen neuer Eintraege
     path('new_entry/<int:topic_id>/', views.new_entry, name='new_entry'),
     #
     # Seite zum Bearbeiten eines Eintrags
