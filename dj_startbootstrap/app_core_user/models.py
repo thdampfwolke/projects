@@ -9,8 +9,7 @@ class User(models.Model):
     nname = models.CharField(max_length=32, null=False)
     vname = models.CharField(max_length=32, null=False)
     geb = models.DateField(null=True, blank=True)
-    email = models.EmailField(
-        max_length=64, null=True, blank=True, unique=True)
+    email = models.EmailField(max_length=64, null=True, blank=True, unique=True)
     is_active = models.BooleanField(null=False, default=True)
     date_beg = models.DateField(null=False, default='2000-01-01')
     date_end = models.DateField(null=False, default='2099-12-31')

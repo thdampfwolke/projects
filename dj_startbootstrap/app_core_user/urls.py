@@ -1,4 +1,6 @@
+# ----------------------------------------------------------------------------
 # ../app_core_user/urls.py
+# ----------------------------------------------------------------------------
 
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import path
@@ -14,14 +16,23 @@ urlpatterns = [
     path('index_02.html', views.index_02, name='index_02'),
     path('index_03_user.html', views.index_03_user, name='index_03_user'),
     path('index_04_userid.html', views.index_04_userid, name='index_04_userid'),
-    path('index_05_user2userid.html', views.index_05_user2userid,
-         name='index_05_user2userid'),
+    path('index_05_user2userid.html', views.index_05_user2userid, name='index_05_user2userid'),
     path('index_06/<int:user_id>/', views.index_06_user, name='index_06_user'),
     path('index_13_user_new/', views.index_13_user_new, name='index_13_user_new'),
-    path('index_14_userid_new/', views.index_14_userid_new,
-         name='index_14_userid_new'),
+    path('index_14_userid_new/', views.index_14_userid_new, name='index_14_userid_new'),
     #
     #
     path("favicon.ico", RedirectView.as_view(
         url=staticfiles_storage.url("favicon.ico"))),
 ]
+
+# ----------------------------------------------------------------------------
+# http://127.0.0.1:8000/user/index.html
+# http://127.0.0.1:8000/user/index_02.html
+# http://127.0.0.1:8000/user/index_03_user.html
+# http://127.0.0.1:8000/user/index_04_userid.html
+# http://127.0.0.1:8000/user/index_05_user2userid.html
+# http://127.0.0.1:8000/user/index_06/1/
+# http://127.0.0.1:8000/user/index_13_user_new/
+# http://127.0.0.1:8000/user/index_14_userid_new/
+# ----------------------------------------------------------------------------
