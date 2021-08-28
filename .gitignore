@@ -28,3 +28,9 @@ boot-strap
 # /static
 # **/static
 # **/*.zip
+zzz___
+zzz___*
+zzz___*.*
+**/zzz___
+**/zzz___*
+**/zzz___*.*
