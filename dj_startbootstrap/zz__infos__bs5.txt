@@ -70,8 +70,10 @@ new:	<script src="{% static 'bs5/assets/demo/chart-bar-demo.js' %}" ></script>
 old		<script src="js/datatables-simple-demo.js"></script>
 new:	<script src="{% static 'bs5/js/datatables-simple-demo.js' %}" ></script>
 
+old		<script src="assets/demo/chart-pie-demo.js"></script>
+new:	<script src="{% static 'bs5/assets/demo/chart-pie-demo.js' %}" ></script>
 
-<script src="assets/demo/chart-pie-demo.js"></script>
+
 
 <a class="nav-link" href="layout-static.html">Static Navigation</a>
 <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
@@ -95,6 +97,7 @@ cdn_jsdelivr_net__npm_simple-datatables__style.js
 cdnjs_cloudflare_com__ajax__libs__Chart.js-2.8.0__Chart.min.js
 cdnjs_cloudflare_com__ajax__libs__font-awesome__js__all.min.js
 
+# ----------------------------------------------------------------------------
 <!-- <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion"> -->
 <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
 				
