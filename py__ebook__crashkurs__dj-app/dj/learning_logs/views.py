@@ -1,17 +1,23 @@
+# ----------------------------------------------------------------------------
 # ../app_learnings_logs/views.py
+# ----------------------------------------------------------------------------
 
 from django.shortcuts import render, redirect
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
 
+# ----------------------------------------------------------------------------
+
 
 def index(request):
     """The home page for Learning Log"""
+    # path('', views.index, name='index'),
     return render(request, 'learning_logs/index.html')
 
 
 def topics(request):
-    """Show all topics."""
+    """Show all topics"""
+    # path('topics/', views.topics, name='topics'),
     topics = Topic.objects.order_by('date_added')
     context = {'topics': topics}
     return render(request, 'learning_logs/topics.html', context)
@@ -19,6 +25,7 @@ def topics(request):
 
 def topic(request, topic_id):
     """Show a single topic and all its entries."""
+    # path('topics/<int:topic_id>/', views.topic, name='topic'),
     topic = Topic.objects.get(id=topic_id)
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
@@ -27,6 +34,8 @@ def topic(request, topic_id):
 
 def new_topic(request):
     """Add a new topic."""
+    # path('new_topic/', views.new_topic, name='new_topic'),
+
     if request.method != 'POST':
         # Keine Daten übermittelt; es wird ein leeres Formular erstellt
         form = TopicForm()
@@ -43,7 +52,9 @@ def new_topic(request):
 
 
 def new_entry(request, topic_id):
-    """Add a new entry for a particular topic - S. 480"""
+    """Add a new entry for a particular topic (480)"""
+    # path('new_entry/<int:topic_id>/', views.new_entry, name='new_entry'),
+
     topic = Topic.objects.get(id=topic_id)
     if request.method != 'POST':
         # Keine Daten übermittelt; es wird ein leeres Formular erstellt.
@@ -63,7 +74,9 @@ def new_entry(request, topic_id):
 
 
 def edit_entry(request, entry_id):
-    """Edit an existing entry - S. 484"""
+    """Edit an existing entry (484)"""
+    # path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
+
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
     if request.method != 'POST':
