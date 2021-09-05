@@ -2,7 +2,7 @@
 # ../app_learnings_logs/views.py
 # ----------------------------------------------------------------------------
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from .models import Topic, Entry
@@ -31,7 +31,8 @@ def topics(request):
 def topic(request, topic_id):
     """Show a single topic and all its entries."""
     # path('topics/<int:topic_id>/', views.topic, name='topic'),
-    topic = Topic.objects.get(id=topic_id)
+    # topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
     # Überprüft, ob das Fachgebiet dem aktuellen Benutzer gehört.
     if topic.owner != request.user:
         raise Http404
