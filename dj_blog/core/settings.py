@@ -1,26 +1,23 @@
-# ----------------------------------------------------------------------------
-# ../dj_startbootstrap/core/settings.py
-# ----------------------------------------------------------------------------
+# ------------------------------------------------------------------
+# ../dj_blog/core/settings.py
+# ------------------------------------------------------------------
+
 
 from pathlib import Path
-# from django.urls import reverse
-
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_k8dnq$f^adoj9jplw=c*3-e1-k=r7g_9mnr5mq$y8!5q6u+s5'
+SECRET_KEY = 'django-insecure-(e7cjnelu7y4)dmy&g+re+6!bf8ou!msqc80a3qup&h6i(vlqu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-# DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -34,10 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_users',
-    'app_core_server',
-    'app_core_user',
-    'app_web',
+    'app_blogs'
 ]
 
 MIDDLEWARE = [
@@ -73,7 +67,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -82,19 +76,9 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'db_test',
-#        'USER': 'django',
-#        'PASSWORD': 'password',
-#        'HOST': 'localhost',
-#        'PORT': '',
-#    }
-# }
 
 # Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
+# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
@@ -105,10 +89,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
+# https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 # LANGUAGE_CODE = 'en-us'
 # TIME_ZONE = 'UTC'
+
 LANGUAGE_CODE = 'de-DE'
 TIME_ZONE = 'Europe/Berlin'
 
@@ -116,29 +101,23 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-FORMAT_MODULE_PATH = 'core.formats'
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+# https://docs.djangoproject.com/en/3.2/ref/contrib/staticfiles/
+# STATIC_ROOT, STATIC_URL, STATICFILES_DIRS, STATICFILES_STORAGE, STATICFILES_FINDERS
+#
+# {% load static %}
+# <img src="{% static 'app_xxx/example.jpg' %}" alt="My image">
+#
+# python manage.py collectstatic
 
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
-
-#STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
-#
-#MEDIA_URL = '/media/'
-#MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-
-# LOGIN_URL = 'users:login'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_files')]
 
 
-# if os.environ.get('DEBUG') == 'TRUE':
-#     DEBUG = True
-# elif os.environ.get('DEBUG') == 'FALSE':
-#     DEBUG = False
-#
-# >>> set DEBUG='FALSE'
-# >>> set DEBUG='TRUE'
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

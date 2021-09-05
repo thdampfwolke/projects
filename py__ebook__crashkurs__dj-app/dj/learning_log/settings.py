@@ -1,3 +1,7 @@
+# ----------------------------------------------------------------------------
+# ../py3cr/core/settings.py
+# ----------------------------------------------------------------------------
+
 from pathlib import Path
 import os
 
@@ -14,7 +18,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'lbwpai^rqz#8)hp4fr2-1&2(@a959cs()7!9_n^ic*!5@h0#qa'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -49,7 +54,7 @@ ROOT_URLCONF = 'learning_log.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR), 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

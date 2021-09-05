@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="de">
+
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+
+        <title>
+            {% block title %}
+            {% endblock title %}
+        </title>
+
+        <link href="{% static 'bs5/vendor/cdn_jsdelivr_net__npm_simple-datatables__style.css' %}" rel="stylesheet" />
+        <link href="{% static 'bs5/css/styles.css' %}" rel="stylesheet" />
+        <script src="{% static 'bs5/vendor/cdnjs_cloudflare_com__ajax__libs__font-awesome__js__all.min.js' %}" ></script>
+        <link rel="icon"href="{% static 'favicon.ico' %}">
+    </head>
+
+
+    <body class="sb-nav-fixed">
+
+        <!-- beg: topbar -->
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                <!-- ----------------------------------------------------- -->
+                <!-- Topbar -->
+                {% include 'layout/topbar.html' %}
+                <!-- End of Topbar -->
+        </nav>
+        <!-- end: topbar -->
+
+
+        <!-- --------------------------------------------------------------------- -->
+        <div id="layoutSidenav">
+
+
+            <!-- beg: sidebar -->
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <!-- ----------------------------------------------------- -->
+                <!-- Sidebar -->
+                {% include 'layout/sidebar.html' %}
+                <!-- End of Sidebar -->
+                </nav>
+            </div>
+            <!-- end: sidebar -->
+
+
+            <div id="layoutSidenav_content">
+
+                <!-- ----------------------------------------------------- -->
+                {% block body %}
+                {% endblock body %}
+
+                <!-- ----------------------------------------------------- -->
+                <!-- Footer -->
+                    {% include 'layout/footer.html' %}
+                <!-- End of Footer -->
+
+            </div>
+        </div>
+        <!-- --------------------------------------------------------------------- -->
+        
+        <script src="{% static 'bs5/vendor/cdn_jsdelivr_net__npm_bootstrap-5.1.0__bootstrap.bundle.min.js' %}" ></script>
+        <script src="{% static 'bs5/js/scripts.js' %}" ></script>
+        <script src="{% static 'bs5/vendor/cdnjs_cloudflare_com__ajax__libs__Chart.js-2.8.0__Chart.min.js' %}" ></script>
+        <script src="{% static 'bs5/assets/demo/chart-area-demo.js' %}" ></script>
+        <script src="{% static 'bs5/assets/demo/chart-bar-demo.js' %}" ></script>
+        <script src="{% static 'bs5/vendor/cdn_jsdelivr_net__npm_simple-datatables__style.js' %}" ></script>
+        <script src="{% static 'bs5/js/datatables-simple-demo.js' %}" ></script>
+    </body>
+</html>
