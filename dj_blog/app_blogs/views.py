@@ -28,6 +28,12 @@ def index_bs5(request):
     # path('index_bs5.html', views.index_bs5, name='index_bs5'),
     return render(request, 'app_blogs/index_bs5.html')
 
+
+def blog(request):
+    """HP: app_blogs"""
+    # path('blog.html', views.blog, name='blog'),
+    return render(request, 'app_blogs/blog.html')
+
 # ==================================================================
 # old:
 # ==================================================================

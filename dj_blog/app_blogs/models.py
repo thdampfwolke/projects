@@ -34,6 +34,7 @@ class Topic(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
+        verbose_name = 'TOPIC'
         verbose_name_plural = 'TOPIC'
         ordering = ('-date_modified',)
 
@@ -55,22 +56,23 @@ class Tag(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
+        verbose_name = 'TAG'
         verbose_name_plural = 'TAG'
         ordering = ('tag',)
 
     def __str__(self):
         return self.tag
 
+
 # ------------------------------------------------------------------
-
-
 class Post(models.Model):
     # id = int
     title = models.CharField(
         max_length=120, unique=True, null=False, blank=False)
     text = models.TextField(unique=False, null=False, blank=False)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    tag = models.ManyToManyField(Tag)
+    # models.ManyToManyField(Topic)
     # owner = models.ForeignKey(User, on_delete=models.CASCADE)
     # group = models.CharField      # ersteller - gruppe
     id_checked = models.BooleanField(null=False, default=False)
@@ -81,6 +83,7 @@ class Post(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
+        verbose_name = 'POST'
         verbose_name_plural = 'POST'
         ordering = ('-date_modified',)
 
@@ -95,7 +98,7 @@ class Post(models.Model):
 class Entry(models.Model):
     # id = int
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    text = models.TextField(unique=False, null=False, blank=False)   # text
+    text = models.TextField(unique=False, null=False, blank=False)
     # owner = models.ForeignKey(User, on_delete=models.CASCADE)
     # group = models.CharField      # ersteller - gruppe
     id_checked = models.BooleanField(null=False, default=False)
@@ -106,6 +109,7 @@ class Entry(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
+        verbose_name = 'ENTRY'
         verbose_name_plural = 'ENTRY'
         ordering = ('-date_modified',)
 

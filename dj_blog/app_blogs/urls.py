@@ -12,6 +12,7 @@ urlpatterns = [
     path('index.html', views.index_01, name='index_01'),
     #
     path('index_bs5.html', views.index_bs5, name='index_bs5'),
+    path('blog.html', views.blog, name='blog'),
     #
     # list: topics (all)
     #path('topics/', views.topics, name='topics'),
