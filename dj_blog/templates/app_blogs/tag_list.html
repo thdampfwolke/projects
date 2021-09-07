@@ -1,0 +1,71 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+    MY-BLOG
+{% endblock title %}
+
+
+{% block body %}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">MY-BLOG</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">tag: list . . .</li>
+        </ol>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                DataTable Example
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>tag</th>
+                            <th>is_checked</th>
+                            <th>is_active</th>
+                            <th>date_beg</th>
+                            <th>date_end</th>
+                            <th>date_created</th>
+                            <th>date_modified</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>id</th>
+                            <th>tag</th>
+                            <th>is_checked</th>
+                            <th>is_active</th>
+                            <th>date_beg</th>
+                            <th>date_end</th>
+                            <th>date_created</th>
+                            <th>date_modified</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for d in data %}
+                        <tr>
+                            <th>{{d.id}}</th>
+                            <th>{{d.tag}}</th>
+                            <th>{{d.is_checked}}</th>
+                            <th>{{d.is_active}}</th>
+                            <th>{{d.date_beg}}</th>
+                            <th>{{d.date_end}}</th>
+                            <th>{{d.date_created}}</th>
+                            <th>{{d.date_modified}}</th>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+</main>
+
+
+{% endblock body %}

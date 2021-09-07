@@ -15,7 +15,7 @@ admin.site.register(Topic)
 # ------------------------------------------------------------------
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'text', 'topic', 'id_checked',
+    list_display = ['id', 'title', 'text', 'topic', 'is_checked',
                     'is_active', 'date_beg', 'date_end', 'date_created', 'date_modified']
     # list_filter = ['in_stock', 'is_active']
     # list_editable = ['price', 'in_stock']

@@ -7,6 +7,7 @@ from django.shortcuts import render
 # from django.shortcuts import render, redirect, get_object_or_404
 # from django.contrib.auth.decorators import login_required
 
+from .models import Tag, Topic
 # from .models import Topic, Entry
 # from .forms import TopicForm, EntryForm
 
@@ -33,6 +34,25 @@ def blog(request):
     """HP: app_blogs"""
     # path('blog.html', views.blog, name='blog'),
     return render(request, 'app_blogs/blog.html')
+
+
+def tag_list(request):
+    """Show all tags"""
+    # path('tag_list.html', views.tag_list, name='tag_list'),
+    data = Tag.objects.order_by('tag')
+    # data = Tag.objects.order_by('date_modified')
+    # data = Tag.objects.filter(owner=request.user).order_by('date_modified')
+    context = {'data': data}
+    return render(request, 'app_blogs/tag_list.html', context)
+
+
+def topic_list(request):
+    """Show all topics"""
+    # path('topic_list.html', views.topic_list, name='topic_list'),
+    data = Topic.objects.order_by('id')
+    context = {'data': data}
+    return render(request, 'app_blogs/topic_list.html', context)
+
 
 # ==================================================================
 # old:

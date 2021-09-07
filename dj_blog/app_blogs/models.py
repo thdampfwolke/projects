@@ -26,7 +26,7 @@ class Topic(models.Model):
         max_length=60, unique=True, null=False, blank=False)
     # owner = models.ForeignKey(User, on_delete=models.CASCADE)
     # group = models.CharField      # ersteller - gruppe
-    id_checked = models.BooleanField(null=False, default=False)
+    is_checked = models.BooleanField(null=False, default=False)
     is_active = models.BooleanField(null=False, default=True)
     date_beg = models.DateField(null=False, default='2000-01-01')
     date_end = models.DateField(null=False, default='2099-12-31')
@@ -48,7 +48,7 @@ class Tag(models.Model):
     tag = models.CharField(max_length=60, unique=True, null=False, blank=False)
     # owner = models.ForeignKey(User, on_delete=models.CASCADE)
     # group = models.CharField      # ersteller - gruppe
-    id_checked = models.BooleanField(null=False, default=False)
+    is_checked = models.BooleanField(null=False, default=False)
     is_active = models.BooleanField(null=False, default=True)
     date_beg = models.DateField(null=False, default='2000-01-01')
     date_end = models.DateField(null=False, default='2099-12-31')
@@ -75,7 +75,7 @@ class Post(models.Model):
     # models.ManyToManyField(Topic)
     # owner = models.ForeignKey(User, on_delete=models.CASCADE)
     # group = models.CharField      # ersteller - gruppe
-    id_checked = models.BooleanField(null=False, default=False)
+    is_checked = models.BooleanField(null=False, default=False)
     is_active = models.BooleanField(null=False, default=True)
     date_beg = models.DateField(null=False, default='2000-01-01')
     date_end = models.DateField(null=False, default='2099-12-31')
@@ -101,7 +101,7 @@ class Entry(models.Model):
     text = models.TextField(unique=False, null=False, blank=False)
     # owner = models.ForeignKey(User, on_delete=models.CASCADE)
     # group = models.CharField      # ersteller - gruppe
-    id_checked = models.BooleanField(null=False, default=False)
+    is_checked = models.BooleanField(null=False, default=False)
     is_active = models.BooleanField(null=False, default=True)
     date_beg = models.DateField(null=False, default='2000-01-01')
     date_end = models.DateField(null=False, default='2099-12-31')
