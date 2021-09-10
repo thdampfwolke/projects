@@ -9,4 +9,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('accounts/', include('accounts.urls')),
     path('', include('app_blogs.urls')),
+    path('server/', include('app_server.urls'))
 ]
