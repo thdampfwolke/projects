@@ -10,6 +10,7 @@ app_name = 'app_server'
 urlpatterns = [
     path('', views.index, name='index'),
     path('index.html', views.index_01, name='index_01'),
+    # path('t2t/', views.add_t2t, name='add_t2t'),
     #path('index_bs5.html', views.index_bs5, name='index_bs5'),
     #path('blog.html', views.blog, name='blog'),
     #path('tag_list.html', views.tag_list, name='tag_list'),

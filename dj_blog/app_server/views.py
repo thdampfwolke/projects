@@ -14,41 +14,60 @@ from .models import H2H_server2verfahren, T2T_server2verfahren
 # from .forms import TopicForm, EntryForm
 
 
-def index(request):
-    return render(request, 'app_server/index.html')
-
-
-def index_01(request):
-    return render(request, 'app_server/index.html')
-
 # ============================================================================
-# tab loeschen; ueber tab_h2h -> tab_t2t fuellen; srv_id und verf_id ermitteln und in tab_t2t schreiben
+# tab loeschen; ueber tab_h2h -> tab_t2t fuellen;
+#  srv_id und verf_id ermitteln und in tab_t2t schreiben
 # ============================================================================
+
 
 # ------------------------------------------------------------------
-#
+def f_del_t2t():
+
+    # inhalt von tab vollstaendig loeschen
+    T2T_server2verfahren.objects.all().delete()
 
 
-def f_t2t_old2new():
+# ------------------------------------------------------------------
+def f_add_t2t():
 
-    # tab vollstaendig loeschen
-    t2t_verf2srv.objects.all().delete()
+    # inhalt von tab vollstaendig loeschen
+    T2T_server2verfahren.objects.all().delete()
 
-    data_server = srv.objects.all()
+    data_server = Server.objects.all()              # neue server tab einlesen
+    # print('xxx---', data_server, '---XXX')
 
-    for d in data_server:
-        # print(d.id, d.name)
-        data_h2h = h2h_verf2srv.objects.get(srv=d.name)          # id srv
+    for d_srv in data_server:                       # einezelne server von server tab durchgehen
+        # print(d_srv.id, d_srv.name)
 
-        # print(data_h2h.id, data_h2h.srv, data_h2h.verfahren)
-        d_verf = verf.objects.get(name=data_h2h.verf)            # id verfahren
-        data_4_t2t = t2t_verf2srv(verf=d_verf, srv=d)
+        # d_h2h: alle server-infos (id, server, verfahren) von tab_h2h einlesen
+        d_h2h = H2H_server2verfahren.objects.get(server=d_srv.name)
+        # print(d_h2h.id, d_h2h.server, d_h2h.verfahren)
 
+        d_verf = Verfahren.objects.get(name=d_h2h.verfahren)
+
+        data_4_t2t = T2T_server2verfahren(server=d_srv, verfahren=d_verf)
         data_4_t2t.save()
 
 # ----------------------------------------------------------------------------
 
 
 def add_t2t(request):
-    f_t2t_old2new()
+    # f_add_t2t()
+    # f_del_t2t
     return HttpResponse("abc")
+
+
+# ------------------------------------------------------------------
+#
+def index(request):
+    f_del_t2t
+    # f_add_t2t()
+    return render(request, 'app_server/index.html')
+
+
+# ------------------------------------------------------------------
+#
+def index_01(request):
+    f_del_t2t
+    # f_add_t2t()
+    return render(request, 'app_server/index.html')

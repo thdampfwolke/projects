@@ -11,14 +11,11 @@ from django.db import models
 # from django.contrib.auth.urls import xxx
 
 
-
-
-
 # ------------------------------------------------------------------
 #
 class Server(models.Model):
     # id = int
-    server = models.CharField(
+    name = models.CharField(
         max_length=60, unique=True, null=False, blank=False)
 
     class Meta:
@@ -27,14 +24,14 @@ class Server(models.Model):
         ordering = ('id',)
 
     def __str__(self):
-        return f"{self.id, self.server}"
+        return f"{self.id, self.name}"
 
 
 # ------------------------------------------------------------------
 #
 class Verfahren(models.Model):
     # id = int
-    verfahren = models.CharField(
+    name = models.CharField(
         max_length=60, unique=True, null=False, blank=False)
 
     class Meta:
@@ -43,7 +40,7 @@ class Verfahren(models.Model):
         ordering = ('id',)
 
     def __str__(self):
-        return f"{self.id, self.verfahren}"
+        return f"{self.id, self.name}"
 
 
 # ------------------------------------------------------------------

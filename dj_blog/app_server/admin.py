@@ -7,10 +7,38 @@ from django.contrib import admin
 from .models import Server, Verfahren
 from .models import H2H_server2verfahren, T2T_server2verfahren
 
-admin.site.register(Server)
-admin.site.register(Verfahren)
-admin.site.register(H2H_server2verfahren)
-admin.site.register(T2T_server2verfahren)
+# admin.site.register(Server)
+# admin.site.register(Verfahren)
+# admin.site.register(H2H_server2verfahren)
+# admin.site.register(T2T_server2verfahren)
+
+# ------------------------------------------------------------------
+
+
+@admin.register(Server)
+class ServerAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+
+# ------------------------------------------------------------------
+
+
+@admin.register(Verfahren)
+class VerfahrenAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+
+# ------------------------------------------------------------------
+
+
+@admin.register(H2H_server2verfahren)
+class H2H_server2verfahrenAdmin(admin.ModelAdmin):
+    list_display = ['id', 'server', 'verfahren']
+
+# ------------------------------------------------------------------
+
+
+@admin.register(T2T_server2verfahren)
+class T2T_server2verfahrenAdmin(admin.ModelAdmin):
+    list_display = ['id', 'server', 'verfahren']
 
 
 # # ------------------------------------------------------------------
