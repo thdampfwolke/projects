@@ -1,0 +1,33 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} 
+    post_show
+{% endblock title %}
+
+
+{% block body %}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">post_show</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">post: show . . .</li>
+        </ol>
+
+        <p>Post: {{ data }}</p>
+        <p>Entries:</p>
+        <ul>
+            {% for entry in entries %}
+            <li>
+                <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
+                <p>{{ entry.text|linebreaks }}</p>
+            </li>
+            {% empty %}
+                <li>There are no DATA</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+</main>
+
+{% endblock body %}

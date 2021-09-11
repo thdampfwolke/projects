@@ -13,10 +13,14 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('index.html', views.index_01, name='index_01'),
     path('index_bs5.html', views.index_bs5, name='index_bs5'),
-    path('blog.html', views.blog, name='blog'),
-    path('tag_list.html', views.tag_list, name='tag_list'),
-    path('topic_list.html', views.topic_list, name='topic_list'),
-    path('post/', views.post_list, name='post_list'),
+    path('blog.html', views.blog, name='blog'),                         # blog: hp
+    path('tag_list.html', views.tag_list,
+         name='tag_list'),             # tag_list
+    path('topic_list.html', views.topic_list,
+         name='topic_list'),       # topic_list
+    path('post/', views.post_list, name='post_list'),                   # post_list
+    path('post/<int:post_id>/', views.post_show,
+         name='post_show'),     # post_show
     #
     # list: topic (one)
     #path('topics/<int:topic_id>/', views.topic, name='topic'),

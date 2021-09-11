@@ -57,10 +57,20 @@ def topic_list(request):
 def post_list(request):
     """Show all posts"""
     # path('post/', views.post_list, name='post_list'),
-    data = Post.objects.order_by('date_modified')
+    data = Post.objects.order_by('-date_modified')
     context = {'data': data}
     return render(request, 'app_blogs/post_list.html', context)
 
+
+def post_show(request, post_id):
+    """Show a single post and all its entries"""
+    data = Post.objects.get(id=post_id)
+    entries = data.entry_set.order_by('-date_modified')
+    context = {'data': data, 'entries': entries}
+    return render(request, 'app_blogs/post_show.html', context)
+
+
+#path('post/<int:post_id>/', views.post_show, name='post_show'),
 
 # ==================================================================
 # old:

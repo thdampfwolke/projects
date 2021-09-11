@@ -1,0 +1,85 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} 
+    post_show
+{% endblock title %}
+
+
+{% block body %}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">post_show</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">post: show . . .</li>
+        </ol>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                DataTable Example
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>title</th>
+                            <th>text</th>
+                            <th>topic</th>
+                            <th>tag</th>
+                            <th>is_checked</th>
+                            <th>is_active</th>
+                            <th>date_beg</th>
+                            <th>date_end</th>
+                            <th>date_created</th>
+                            <th>date_modified</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>id</th>
+                            <th>title</th>
+                            <th>text</th>
+                            <th>topic</th>
+                            <th>tag</th>
+                            <th>is_checked</th>
+                            <th>is_active</th>
+                            <th>date_beg</th>
+                            <th>date_end</th>
+                            <th>date_created</th>
+                            <th>date_modified</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for d in data %}
+                        <tr>
+                            <td>{{d.id}}</td>
+                            <td>{{d.title}}</td>
+                            <td>{{d.text|truncatechars:50}}</td>
+                            <td>{{d.topic}}</td>
+                            <td>
+                                {% for h in d.tag.all %}
+                                    {{h.tag}}
+                                {% endfor %}
+                            </td>
+                            <td>{{d.is_checked}}</td>
+                            <td>{{d.is_active}}</td>
+                            <td>{{d.date_beg}}</td>
+                            <td>{{d.date_end}}</td>
+                            <td>{{d.date_created}}</td>
+                            <td>{{d.date_modified}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock body %}
+
+
+Post:   id,     title,  text,   tag,    date_created,   date_modified
+Entry:  id,             text,           date_created,   date_modified
