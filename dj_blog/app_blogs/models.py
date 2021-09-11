@@ -93,6 +93,7 @@ class Post(models.Model):
         else:
             return f"{self.title, self.text}"
 
+# Post: id, title. text, topic, tag, is_checked, is_active, date_beg, date_end, date_created, date_modified
 
 # ------------------------------------------------------------------
 class Entry(models.Model):

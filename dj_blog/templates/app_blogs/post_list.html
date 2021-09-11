@@ -1,7 +1,7 @@
 {% extends 'layout/base.html' %}
 
 {% block title %} 
-    tag_list
+    post_list
 {% endblock title %}
 
 
@@ -9,9 +9,9 @@
 
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">tag_list</h1>
+        <h1 class="mt-4">post_list</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">tag: list . . .</li>
+            <li class="breadcrumb-item active">post: list . . .</li>
         </ol>
 
         <div class="card mb-4">
@@ -24,6 +24,9 @@
                     <thead>
                         <tr>
                             <th>id</th>
+                            <th>title</th>
+                            <th>text</th>
+                            <th>topic</th>
                             <th>tag</th>
                             <th>is_checked</th>
                             <th>is_active</th>
@@ -36,6 +39,9 @@
                     <tfoot>
                         <tr>
                             <th>id</th>
+                            <th>title</th>
+                            <th>text</th>
+                            <th>topic</th>
                             <th>tag</th>
                             <th>is_checked</th>
                             <th>is_active</th>
@@ -49,7 +55,14 @@
                         {% for d in data %}
                         <tr>
                             <td>{{d.id}}</td>
-                            <td>{{d.tag}}</td>
+                            <td>{{d.title}}</td>
+                            <td>{{d.text|truncatechars:50}}</td>
+                            <td>{{d.topic}}</td>
+                            <td>
+                                {% for h in d.tag.all %}
+                                    {{h.tag}}
+                                {% endfor %}
+                            </td>
                             <td>{{d.is_checked}}</td>
                             <td>{{d.is_active}}</td>
                             <td>{{d.date_beg}}</td>

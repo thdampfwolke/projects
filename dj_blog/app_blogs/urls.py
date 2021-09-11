@@ -7,6 +7,8 @@ from . import views
 
 app_name = 'app_blogs'
 
+# core:  path('', include('app_blogs.urls')),
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('index.html', views.index_01, name='index_01'),
@@ -14,6 +16,7 @@ urlpatterns = [
     path('blog.html', views.blog, name='blog'),
     path('tag_list.html', views.tag_list, name='tag_list'),
     path('topic_list.html', views.topic_list, name='topic_list'),
+    path('post/', views.post_list, name='post_list'),
     #
     # list: topic (one)
     #path('topics/<int:topic_id>/', views.topic, name='topic'),
@@ -27,3 +30,11 @@ urlpatterns = [
     # edit: entry (Eintrag)
     #path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
 ]
+
+# http://127.0.0.1:8000/
+# http://127.0.0.1:8000/index.html
+# http://127.0.0.1:8000/blog.html
+# http://127.0.0.1:8000/tag_list.html
+# http://127.0.0.1:8000/topic_list.html
+# http://127.0.0.1:8000/
+# http://127.0.0.1:8000/

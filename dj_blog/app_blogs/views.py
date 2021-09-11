@@ -7,7 +7,7 @@ from django.shortcuts import render
 # from django.shortcuts import render, redirect, get_object_or_404
 # from django.contrib.auth.decorators import login_required
 
-from .models import Tag, Topic
+from .models import Tag, Topic, Post
 # from .models import Topic, Entry
 # from .forms import TopicForm, EntryForm
 
@@ -52,6 +52,14 @@ def topic_list(request):
     data = Topic.objects.order_by('id')
     context = {'data': data}
     return render(request, 'app_blogs/topic_list.html', context)
+
+
+def post_list(request):
+    """Show all posts"""
+    # path('post/', views.post_list, name='post_list'),
+    data = Post.objects.order_by('date_modified')
+    context = {'data': data}
+    return render(request, 'app_blogs/post_list.html', context)
 
 
 # ==================================================================
