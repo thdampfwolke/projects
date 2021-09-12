@@ -2,15 +2,17 @@
 # ../dj_blog/app_blogs/views.py
 # ------------------------------------------------------------------
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import TopicForm
 
 # from django.shortcuts import render, redirect, get_object_or_404
 # from django.contrib.auth.decorators import login_required
 
-from .models import Tag, Topic, Post
-# from .models import Topic, Entry
-# from .forms import TopicForm, EntryForm
+from .models import Tag, Topic, Post, Entry
 
+
+# ============================================================================
+# 
 
 def index(request):
     """HP: app_blogs"""
@@ -30,11 +32,16 @@ def index_bs5(request):
     return render(request, 'app_blogs/index_bs5.html')
 
 
+# ============================================================================
+# blog:
+
 def blog(request):
     """HP: app_blogs"""
     # path('blog.html', views.blog, name='blog'),
     return render(request, 'app_blogs/blog.html')
 
+# ============================================================================
+# list:
 
 def tag_list(request):
     """Show all tags"""
@@ -62,15 +69,55 @@ def post_list(request):
     return render(request, 'app_blogs/post_list.html', context)
 
 
+# ============================================================================
+# show:
+
+def entry_show(request, entry_id):
+    """Show a single entry"""
+    # path('post/<int:entry_id>/', views.entry_show, name='entry_show')
+    data = Entry.objects.get(id=entry_id)
+    context = {'data': data}
+    return render(request, 'app_blogs/entry_show.html', context)
+
+
 def post_show(request, post_id):
-    """Show a single post and all its entries"""
+    """Show a single post"""
+    # path('post/<int:post_id>/', views.post_show, name='post_show'),
     data = Post.objects.get(id=post_id)
     entries = data.entry_set.order_by('-date_modified')
     context = {'data': data, 'entries': entries}
     return render(request, 'app_blogs/post_show.html', context)
 
 
-#path('post/<int:post_id>/', views.post_show, name='post_show'),
+# ============================================================================
+# add:
+
+def topic_add(request):
+    """Add a new topic"""
+    # path('topic_add/', views.topic_add, name='topic_add'),
+    if request.method != 'POST':
+        # keine daten; erstelle ein neues leeres formular
+        form = TopicForm()
+    else:
+        # POST-Daten uebermittelt; Daten werden verarbeitet
+        form = TopicForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app_blogs:topic_list')
+
+    # zeigt ein leeres oder ein als ungueltiges erkanntes Formular an
+    context = {'form': form}
+    return render(request, 'app_blogs/topic_add.html', context)
+
+
+# ==================================================================
+#   path('blog.html', views.blog, name='blog'),                         # blog: hp
+#   path('tag_list.html', views.tag_list, name='tag_list'),             # tag_list
+#   path('topic_list.html', views.topic_list, name='topic_list'),       # topic_list
+#   path('post/', views.post_list, name='post_list'),                   # post_list
+#   path('post/<int:post_id>/', views.post_show, name='post_show'),     # post_show
+#   path('post/<int:entry_id>/', views.entry_show, name='entry_show')   # entry_show
+#   path('topic_add/', views.topic_add, name='topic_add'),
 
 # ==================================================================
 # old:

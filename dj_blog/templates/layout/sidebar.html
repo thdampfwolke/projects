@@ -17,9 +17,12 @@
         <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav">
                 <a class="nav-link" href="{% url 'app_blogs:blog' %}">blog: hp</a>
-                <a class="nav-link" href="{% url 'app_blogs:topic_list' %}">blog: list: topic</a>
-                <a class="nav-link" href="{% url 'app_blogs:tag_list' %}">blog: list: tag</a>
-                <a class="nav-link" href="{% url 'app_blogs:post_list' %}">blog: list: post</a>
+                <a class="nav-link" href="{% url 'app_blogs:post_list' %}">blog: post: list</a>
+                <a class="nav-link" href="{% url 'app_blogs:post_show' 1 %}">blog: post: show: 1</a>
+                <a class="nav-link" href="{% url 'app_blogs:entry_show' 1 %}">blog: entry: show: 1</a>
+                <a class="nav-link" href="{% url 'app_blogs:topic_list' %}">blog: topic: list</a>
+                <a class="nav-link" href="{% url 'app_blogs:topic_add' %}">blog: topic: add</a>
+                <a class="nav-link" href="{% url 'app_blogs:tag_list' %}">blog: tag: list</a>
                 <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
             </nav>
         </div>

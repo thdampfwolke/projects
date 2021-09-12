@@ -14,20 +14,59 @@
             <li class="breadcrumb-item active">post: show . . .</li>
         </ol>
 
-        <p>Post: {{ data }}</p>
-        <p>Entries:</p>
-        <ul>
-            {% for entry in entries %}
-            <li>
-                <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
-                <p>{{ entry.text|linebreaks }}</p>
-            </li>
-            {% empty %}
-                <li>There are no DATA</li>
-            {% endfor %}
-        </ul>
-
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                <strong>Post:</strong> {{data.id}}<br><hr>
+                title: {{data.title}}<br>
+                text:  {{data.text}}<br><hr>
+                topic: {{data.topic}}<br>
+                tag: {% for h in data.tag.all %}
+                                {{h.tag}},
+                            {% endfor %}<br><hr>
+                is_checked: {{data.is_checked}}  -  
+                is_active: {{data.is_active}}<br>
+                date_beg:  {{data.date_beg}}  -  
+                date_end: {{data.date_end}}  -  
+                date_created: {{data.date_created}}  -  
+                date_modified: {{data.date_modified}}
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>text</th>
+                            <th>date_created</th>
+                            <th>date_modified</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>id</th>
+                            <th>text</th>
+                            <th>date_created</th>
+                            <th>date_modified</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for entry in entries %}
+                        <tr>
+                            <td><a href="{% url 'app_blogs:entry_show' entry.id %}">{{entry.id}}</a></td>
+                            <td>{{entry.text}}</td>
+                            <td>{{entry.date_created}}</td>
+                            <td>{{entry.date_modified}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </main>
 
 {% endblock body %}
+
+
+Entry:  id,             text,                   date_created,   date_modified
+

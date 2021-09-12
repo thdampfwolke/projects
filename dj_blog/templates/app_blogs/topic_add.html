@@ -1,0 +1,28 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} 
+    topic_add
+{% endblock title %}
+
+
+{% block body %}
+
+<main>
+    <div class="container-fluid px-4">
+
+        <h1 class="mt-4">topic_add: Add a new topic</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">. . .</li>
+
+            <form action="{% url 'app_blogs:topic_add' %}" method='post'>
+                {% csrf_token %}
+                {{ form.as_table }}
+                <button name="submit">Add topic</button>
+            </form>
+        </ol>
+
+
+    </div>
+</main>
+
+{% endblock body %}
