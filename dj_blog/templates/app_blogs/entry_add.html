@@ -1,0 +1,28 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} 
+    entry_add
+{% endblock title %}
+
+
+{% block body %}
+
+<main>
+    <div class="container-fluid px-4">
+
+        <h1 class="mt-4">entry_add: Add a new entry</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">. . .</li>
+
+            <form action="{% url 'app_blogs:entry_add' %}" method='post'>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button name="submit">Add entry</button>
+            </form>
+        </ol>
+
+
+    </div>
+</main>
+
+{% endblock body %}

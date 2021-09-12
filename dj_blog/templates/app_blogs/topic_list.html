@@ -1,7 +1,7 @@
 {% extends 'layout/base.html' %}
 
 {% block title %}
-    BLOG
+    topic_list
 {% endblock title %}
 
 
@@ -17,7 +17,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                DataTable Example  ---  <a href="{% url 'app_blogs:topic_add' %}">Add a new topic</a>
+                <a href="{% url 'app_blogs:topic_add' %}">Add a new topic</a>
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">

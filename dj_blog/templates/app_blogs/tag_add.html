@@ -1,0 +1,28 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} 
+    tag_add
+{% endblock title %}
+
+
+{% block body %}
+
+<main>
+    <div class="container-fluid px-4">
+
+        <h1 class="mt-4">tag_add: Add a new tag</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">. . .</li>
+
+            <form action="{% url 'app_blogs:tag_add' %}" method='post'>
+                {% csrf_token %}
+                {{ form.as_table }}
+                <button name="submit">Add tag</button>
+            </form>
+        </ol>
+
+
+    </div>
+</main>
+
+{% endblock body %}

@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------
 
 from django.shortcuts import render, redirect
-from .forms import TopicForm
+from .forms import EntryForm, TagForm, TopicForm
 
 # from django.shortcuts import render, redirect, get_object_or_404
 # from django.contrib.auth.decorators import login_required
@@ -35,6 +35,7 @@ def index_bs5(request):
 # ============================================================================
 # blog:
 
+# -----------------------------------------------
 def blog(request):
     """HP: app_blogs"""
     # path('blog.html', views.blog, name='blog'),
@@ -43,6 +44,7 @@ def blog(request):
 # ============================================================================
 # list:
 
+# -----------------------------------------------
 def tag_list(request):
     """Show all tags"""
     # path('tag_list.html', views.tag_list, name='tag_list'),
@@ -52,7 +54,7 @@ def tag_list(request):
     context = {'data': data}
     return render(request, 'app_blogs/tag_list.html', context)
 
-
+# -----------------------------------------------
 def topic_list(request):
     """Show all topics"""
     # path('topic_list.html', views.topic_list, name='topic_list'),
@@ -60,7 +62,7 @@ def topic_list(request):
     context = {'data': data}
     return render(request, 'app_blogs/topic_list.html', context)
 
-
+# -----------------------------------------------
 def post_list(request):
     """Show all posts"""
     # path('post/', views.post_list, name='post_list'),
@@ -72,6 +74,7 @@ def post_list(request):
 # ============================================================================
 # show:
 
+# -----------------------------------------------
 def entry_show(request, entry_id):
     """Show a single entry"""
     # path('post/<int:entry_id>/', views.entry_show, name='entry_show')
@@ -79,7 +82,7 @@ def entry_show(request, entry_id):
     context = {'data': data}
     return render(request, 'app_blogs/entry_show.html', context)
 
-
+# -----------------------------------------------
 def post_show(request, post_id):
     """Show a single post"""
     # path('post/<int:post_id>/', views.post_show, name='post_show'),
@@ -92,6 +95,43 @@ def post_show(request, post_id):
 # ============================================================================
 # add:
 
+# -----------------------------------------------
+def entry_add(request):
+    """Add a new entry"""
+    # path('entry_add/', views.entry_add, name='entry_add'),
+    if request.method != 'POST':
+        # keine daten; erstelle ein neues leeres formular
+        form = EntryForm()
+    else:
+        # POST-Daten uebermittelt; Daten werden verarbeitet
+        form = EntryForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app_blogs:post_list')
+
+    # zeigt ein leeres oder ein als ungueltiges erkanntes Formular an
+    context = {'form': form}
+    return render(request, 'app_blogs/entry_add.html', context)
+
+# -----------------------------------------------
+def tag_add(request):
+    """Add a new tag"""
+    # path('tag_add/', views.tag_add, name='tag_add'),
+    if request.method != 'POST':
+        # keine daten; erstelle ein neues leeres formular
+        form = TagForm()
+    else:
+        # POST-Daten uebermittelt; Daten werden verarbeitet
+        form = TagForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app_blogs:tag_list')
+
+    # zeigt ein leeres oder ein als ungueltiges erkanntes Formular an
+    context = {'form': form}
+    return render(request, 'app_blogs/tag_add.html', context)
+
+# -----------------------------------------------
 def topic_add(request):
     """Add a new topic"""
     # path('topic_add/', views.topic_add, name='topic_add'),
@@ -118,7 +158,8 @@ def topic_add(request):
 #   path('post/<int:post_id>/', views.post_show, name='post_show'),     # post_show
 #   path('post/<int:entry_id>/', views.entry_show, name='entry_show')   # entry_show
 #   path('topic_add/', views.topic_add, name='topic_add'),
-
+#   path('tag_add/', views.tag_add, name='tag_add'),                    # tag_add
+#   path('entry_add/', views.entry_add, name='entry_add'),              # entry_add
 # ==================================================================
 # old:
 # ==================================================================

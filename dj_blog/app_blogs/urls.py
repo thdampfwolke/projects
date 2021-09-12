@@ -19,9 +19,11 @@ urlpatterns = [
     path('post/', views.post_list, name='post_list'),                   # post_list
     # ------------------------------------------------------------------------------
     path('post/<int:post_id>/', views.post_show, name='post_show'),     # post_show
-    path('entry/<int:entry_id>/', views.entry_show, name='entry_show'),  # entry_show
+    path('entry/<int:entry_id>/', views.entry_show, name='entry_show'), # entry_show
     # ------------------------------------------------------------------------------
     path('topic_add/', views.topic_add, name='topic_add'),              # topic_add
+    path('tag_add/', views.tag_add, name='tag_add'),                    # tag_add
+    path('entry_add/', views.entry_add, name='entry_add'),              # entry_add
     # ------------------------------------------------------------------------------
     # ------------------------------------------------------------------------------
     #

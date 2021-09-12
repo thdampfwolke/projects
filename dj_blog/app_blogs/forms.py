@@ -3,14 +3,27 @@
 # ------------------------------------------------------------------
 
 from django import forms
-from .models import Tag, Topic
+from .models import Entry, Tag, Topic
+
+# -----------------------------------------------
 
 
-# class TagForm(forms.ModelForm):
-#     class Meta:
-#         model = Tag
-#         fields = ['text']
-#         labels = {'text': ''}
+class EntryForm(forms.ModelForm):
+    class Meta:
+        model = Entry
+        fields = ['post', 'text']
+        labels = {'post': '', 'text': ''}
+
+# -----------------------------------------------
+
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = ['tag']
+        labels = {'tag': ''}
+
+# -----------------------------------------------
 
 
 class TopicForm(forms.ModelForm):
@@ -20,7 +33,7 @@ class TopicForm(forms.ModelForm):
         labels = {'topic': ''}
 
 
-
+# ----------------------------------------------------------------------------
 # {{ form.as_table }}   will render them as table cells wrapped in <tr> tags
 # {{ form.as_p }}       will render them wrapped in <p> tags
 # {{ form.as_ul }}      will render them wrapped in <li> tags

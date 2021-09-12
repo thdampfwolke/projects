@@ -9,7 +9,7 @@ xxx_list        X           X           X           X
 ------------------------------------------------------------------------------
 xxx_show        X (id)      X (id)      -           -
 ------------------------------------------------------------------------------
-xxx_form
+xxx_form                                X
 
 xxx_add
 xxx_edit
@@ -39,5 +39,36 @@ Seite
 ------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------
+# ../dj_blog/app_blogs/models.py
+# ------------------------------------------------------------------
+
+# ------------------------------------------------------------------
+# BLOG      BLOG
+# posts		Beitraege
+# tags		Stichworte      n:n     Netz, Server, TA, . . .
+# topics	Themen		    1:n     Stoerung, Wartung, . . .
+# title		Titel
+
+# ------------------------------------------------------------------
+class Topic(models.Model):
+'id', 'topic', 'id_checked', 'is_active', 'date_beg', 'date_end', 'date_created', 'date_modified' 
+
+class Tag(models.Model):
+'id', 'tag', 'id_checked', 'is_active', 'date_beg', 'date_end', 'date_created', 'date_modified' 
+
+class Post(models.Model):
+'id', 'title', 'text', 'topic', 'tag', 'id_checked', 'is_active', 'date_beg', 'date_end', 'date_created', 'date_modified' 
+FK: topic, tag
+
+class Entry(models.Model):
+'id', 'post', 'text', 'id_checked', 'is_active', 'date_beg', 'date_end', 'date_created', 'date_modified' 
+FK: post
+
+open: owner, group
+
+Topic, Tag, Post, Entry
 
 
