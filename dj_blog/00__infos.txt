@@ -1,4 +1,7 @@
 
+https://github.com/MicroPyramid/django-blog-it/tree/master/django_blog_it
+
+
 open: 470 (kap 19)  form, add, edit, del
 
 
