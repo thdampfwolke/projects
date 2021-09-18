@@ -1,7 +1,7 @@
 {% extends 'layout/base.html' %}
 
 {% block title %} 
-    topic_add
+    post_add
 {% endblock title %}
 
 
@@ -10,15 +10,15 @@
 <main>
     <div class="container-fluid px-4">
 
-        <h1 class="mt-4">topic_add: Add a new topic</h1>
+        <h1 class="mt-4">entry_add: Add a new post</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">. . .</li>
         </ol>
 
-        <form action="{% url 'app_blogs:topic_add' %}" method='post'>
+        <form action="{% url 'app_blogs:post_add' %}" method='post'>
             {% csrf_token %}
             {{ form.as_p }}
-            <button name="submit">Add topic</button>
+            <button name="submit">Add post</button>
         </form>
 
     </div>

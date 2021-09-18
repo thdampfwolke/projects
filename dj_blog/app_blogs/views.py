@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------
 
 from django.shortcuts import render, redirect
-from .forms import EntryForm, TagForm, TopicForm
+from .forms import EntryForm, TagForm, TopicForm, PostForm
 
 # from django.shortcuts import render, redirect, get_object_or_404
 # from django.contrib.auth.decorators import login_required
@@ -12,7 +12,7 @@ from .models import Tag, Topic, Post, Entry
 
 
 # ============================================================================
-# 
+#
 
 def index(request):
     """HP: app_blogs"""
@@ -45,6 +45,8 @@ def blog(request):
 # list:
 
 # -----------------------------------------------
+
+
 def tag_list(request):
     """Show all tags"""
     # path('tag_list.html', views.tag_list, name='tag_list'),
@@ -55,6 +57,8 @@ def tag_list(request):
     return render(request, 'app_blogs/tag_list.html', context)
 
 # -----------------------------------------------
+
+
 def topic_list(request):
     """Show all topics"""
     # path('topic_list.html', views.topic_list, name='topic_list'),
@@ -63,6 +67,8 @@ def topic_list(request):
     return render(request, 'app_blogs/topic_list.html', context)
 
 # -----------------------------------------------
+
+
 def post_list(request):
     """Show all posts"""
     # path('post/', views.post_list, name='post_list'),
@@ -83,6 +89,8 @@ def entry_show(request, entry_id):
     return render(request, 'app_blogs/entry_show.html', context)
 
 # -----------------------------------------------
+
+
 def post_show(request, post_id):
     """Show a single post"""
     # path('post/<int:post_id>/', views.post_show, name='post_show'),
@@ -94,6 +102,27 @@ def post_show(request, post_id):
 
 # ============================================================================
 # add:
+
+# path('post_add/', views.post_add, name='post_add'),                 # entry_add
+
+# -----------------------------------------------
+def post_add(request):
+    """Add a new post"""
+    #path('post_add/', views.post_add, name='post_add'),
+    if request.method != 'POST':
+        # keine daten; erstelle ein neues leeres formular
+        form = PostForm()
+    else:
+        # POST-Daten uebermittelt; Daten werden verarbeitet
+        form = PostForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app_blogs:post_list')
+
+    # zeigt ein leeres oder ein als ungueltiges erkanntes Formular an
+    context = {'form': form}
+    return render(request, 'app_blogs/post_add.html', context)
+
 
 # -----------------------------------------------
 def entry_add(request):
@@ -114,6 +143,8 @@ def entry_add(request):
     return render(request, 'app_blogs/entry_add.html', context)
 
 # -----------------------------------------------
+
+
 def tag_add(request):
     """Add a new tag"""
     # path('tag_add/', views.tag_add, name='tag_add'),
@@ -132,6 +163,8 @@ def tag_add(request):
     return render(request, 'app_blogs/tag_add.html', context)
 
 # -----------------------------------------------
+
+
 def topic_add(request):
     """Add a new topic"""
     # path('topic_add/', views.topic_add, name='topic_add'),
