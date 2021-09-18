@@ -18,8 +18,19 @@ from django.db import models
 # topics	Themen		    1:n     Stoerung, Wartung, . . .
 # title		Titel
 
+# ==================================================================
+
+
+# ==================================================================
+# Topic:    id, topic, is_checked, is_active, date_beg, date_end, date_created, date_modified
+# Tag:      id, tag, is_checked, is_active, date_beg, date_end, date_created, date_modified
+# Post:     id, title, text, fk: topic, mm: tag, is_checked, is_active, date_beg, date_end, date_created, date_modified
+# Entry:    id, fk:post, text, is_checked, is_active, date_beg, date_end, date_created, date_modified
+# ==================================================================
 
 # ------------------------------------------------------------------
+# Topic:    id, topic, is_checked, is_active, date_beg, date_end, date_created, date_modified
+
 class Topic(models.Model):
     # id = int
     topic = models.CharField(
@@ -28,7 +39,7 @@ class Topic(models.Model):
     # group = models.CharField      # ersteller - gruppe
     is_checked = models.BooleanField(null=False, default=False)
     is_active = models.BooleanField(null=False, default=True)
-    date_beg = models.DateField(null=False, default='2000-01-01')
+    date_beg = models.DateField(null=False, default='2020-01-01')
     date_end = models.DateField(null=False, default='2099-12-31')
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
@@ -43,6 +54,8 @@ class Topic(models.Model):
 
 
 # ------------------------------------------------------------------
+# Tag:  id, tag, is_checked, is_active, date_beg, date_end, date_created, date_modified
+
 class Tag(models.Model):
     # id = int
     tag = models.CharField(max_length=60, unique=True, null=False, blank=False)
@@ -50,7 +63,7 @@ class Tag(models.Model):
     # group = models.CharField      # ersteller - gruppe
     is_checked = models.BooleanField(null=False, default=False)
     is_active = models.BooleanField(null=False, default=True)
-    date_beg = models.DateField(null=False, default='2000-01-01')
+    date_beg = models.DateField(null=False, default='2020-01-01')
     date_end = models.DateField(null=False, default='2099-12-31')
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
@@ -65,6 +78,8 @@ class Tag(models.Model):
 
 
 # ------------------------------------------------------------------
+# Post: id, title, text, fk: topic, mm: tag, is_checked, is_active, date_beg, date_end, date_created, date_modified
+
 class Post(models.Model):
     # id = int
     title = models.CharField(
@@ -77,7 +92,7 @@ class Post(models.Model):
     # group = models.CharField      # ersteller - gruppe
     is_checked = models.BooleanField(null=False, default=False)
     is_active = models.BooleanField(null=False, default=True)
-    date_beg = models.DateField(null=False, default='2000-01-01')
+    date_beg = models.DateField(null=False, default='2020-01-01')
     date_end = models.DateField(null=False, default='2099-12-31')
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
@@ -96,6 +111,9 @@ class Post(models.Model):
 # Post: id, title, text, topic, tag, is_checked, is_active, date_beg, date_end, date_created, date_modified
 
 # ------------------------------------------------------------------
+# Entry:    id, fk:post, text, is_checked, is_active, date_beg, date_end, date_created, date_modified
+
+
 class Entry(models.Model):
     # id = int
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -104,7 +122,7 @@ class Entry(models.Model):
     # group = models.CharField      # ersteller - gruppe
     is_checked = models.BooleanField(null=False, default=False)
     is_active = models.BooleanField(null=False, default=True)
-    date_beg = models.DateField(null=False, default='2000-01-01')
+    date_beg = models.DateField(null=False, default='2020-01-01')
     date_end = models.DateField(null=False, default='2099-12-31')
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
@@ -121,6 +139,7 @@ class Entry(models.Model):
             return f"{self.text}"
 
 # Entry: id, post, text, is_checked, is_active, date_beg, date_end, date_created, date_modified
+
 
 # ==================================================================
 # old:
