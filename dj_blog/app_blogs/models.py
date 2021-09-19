@@ -82,8 +82,7 @@ class Tag(models.Model):
 
 class Post(models.Model):
     # id = int
-    title = models.CharField(
-        max_length=120, unique=True, null=False, blank=False)
+    title = models.CharField(max_length=120, unique=True, null=False, blank=False)
     text = models.TextField(unique=False, null=False, blank=False)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     tag = models.ManyToManyField(Tag)
