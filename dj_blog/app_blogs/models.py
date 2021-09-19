@@ -3,9 +3,12 @@
 # ------------------------------------------------------------------
 
 from django.db import models
+import datetime
+# import datetime.now
+
+# from django.utils import timezone
 
 # from django.urls import reverse
-# from django.utils import timezone
 # from django.contrib.auth.models import User
 # from django.contrib.auth.models.Group import xxx
 # from django.contrib.auth.urls import xxx
@@ -39,7 +42,7 @@ class Topic(models.Model):
     # group = models.CharField      # ersteller - gruppe
     is_checked = models.BooleanField(null=False, default=False)
     is_active = models.BooleanField(null=False, default=True)
-    date_beg = models.DateField(null=False, default='2020-01-01')
+    date_beg = models.DateField(null=False, default=datetime.date.today)
     date_end = models.DateField(null=False, default='2099-12-31')
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
@@ -63,7 +66,7 @@ class Tag(models.Model):
     # group = models.CharField      # ersteller - gruppe
     is_checked = models.BooleanField(null=False, default=False)
     is_active = models.BooleanField(null=False, default=True)
-    date_beg = models.DateField(null=False, default='2020-01-01')
+    date_beg = models.DateField(null=False, default=datetime.date.today)
     date_end = models.DateField(null=False, default='2099-12-31')
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
@@ -82,7 +85,8 @@ class Tag(models.Model):
 
 class Post(models.Model):
     # id = int
-    title = models.CharField(max_length=120, unique=True, null=False, blank=False)
+    title = models.CharField(
+        max_length=120, unique=True, null=False, blank=False)
     text = models.TextField(unique=False, null=False, blank=False)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     tag = models.ManyToManyField(Tag)
@@ -91,7 +95,7 @@ class Post(models.Model):
     # group = models.CharField      # ersteller - gruppe
     is_checked = models.BooleanField(null=False, default=False)
     is_active = models.BooleanField(null=False, default=True)
-    date_beg = models.DateField(null=False, default='2020-01-01')
+    date_beg = models.DateField(null=False, default=datetime.date.today)
     date_end = models.DateField(null=False, default='2099-12-31')
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
@@ -121,7 +125,7 @@ class Entry(models.Model):
     # group = models.CharField      # ersteller - gruppe
     is_checked = models.BooleanField(null=False, default=False)
     is_active = models.BooleanField(null=False, default=True)
-    date_beg = models.DateField(null=False, default='2020-01-01')
+    date_beg = models.DateField(null=False, default=datetime.date.today)
     date_end = models.DateField(null=False, default='2099-12-31')
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
