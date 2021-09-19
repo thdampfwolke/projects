@@ -41,12 +41,11 @@ def blog(request):
     # path('blog.html', views.blog, name='blog'),
     return render(request, 'app_blogs/blog.html')
 
+
 # ============================================================================
 # list:
 
 # -----------------------------------------------
-
-
 def tag_list(request):
     """Show all tags"""
     # path('tag_list.html', views.tag_list, name='tag_list'),
@@ -57,8 +56,6 @@ def tag_list(request):
     return render(request, 'app_blogs/tag_list.html', context)
 
 # -----------------------------------------------
-
-
 def topic_list(request):
     """Show all topics"""
     # path('topic_list.html', views.topic_list, name='topic_list'),
@@ -67,8 +64,6 @@ def topic_list(request):
     return render(request, 'app_blogs/topic_list.html', context)
 
 # -----------------------------------------------
-
-
 def post_list(request):
     """Show all posts"""
     # path('post/', views.post_list, name='post_list'),
@@ -81,16 +76,30 @@ def post_list(request):
 # show:
 
 # -----------------------------------------------
+def tag_show(request, tag_id):
+    """Show a single entry"""
+    # path('tag/<int:tag_id>/', views.tag_show, name='tag_show')
+    data = Tag.objects.get(id=tag_id)
+    context = {'data': data}
+    return render(request, 'app_blogs/tag_show.html', context)
+
+# -----------------------------------------------
+def topic_show(request, topic_id):
+    """Show a single entry"""
+    # path('topic/<int:topic_id>/', views.topic_show, name='topic_show')
+    data = Topic.objects.get(id=topic_id)
+    context = {'data': data}
+    return render(request, 'app_blogs/topic_show.html', context)
+
+# -----------------------------------------------
 def entry_show(request, entry_id):
     """Show a single entry"""
-    # path('post/<int:entry_id>/', views.entry_show, name='entry_show')
+    # path('entry/<int:entry_id>/', views.entry_show, name='entry_show')
     data = Entry.objects.get(id=entry_id)
     context = {'data': data}
     return render(request, 'app_blogs/entry_show.html', context)
 
 # -----------------------------------------------
-
-
 def post_show(request, post_id):
     """Show a single post"""
     # path('post/<int:post_id>/', views.post_show, name='post_show'),
@@ -102,8 +111,6 @@ def post_show(request, post_id):
 
 # ============================================================================
 # add:
-
-# path('post_add/', views.post_add, name='post_add'),                 # entry_add
 
 # -----------------------------------------------
 def post_add(request):
@@ -143,8 +150,6 @@ def entry_add(request):
     return render(request, 'app_blogs/entry_add.html', context)
 
 # -----------------------------------------------
-
-
 def tag_add(request):
     """Add a new tag"""
     # path('tag_add/', views.tag_add, name='tag_add'),
@@ -163,8 +168,6 @@ def tag_add(request):
     return render(request, 'app_blogs/tag_add.html', context)
 
 # -----------------------------------------------
-
-
 def topic_add(request):
     """Add a new topic"""
     # path('topic_add/', views.topic_add, name='topic_add'),
@@ -181,6 +184,62 @@ def topic_add(request):
     # zeigt ein leeres oder ein als ungueltiges erkanntes Formular an
     context = {'form': form}
     return render(request, 'app_blogs/topic_add.html', context)
+
+
+# ============================================================================
+# edit:
+
+# -----------------------------------------------
+def tag_edit(request, tag_id):
+    """edit a tag"""
+    # path('tag_edit/<int:tag_id>/', views.tag_edit, name='tag_edit'),
+
+    tag = Tag.objects.get(id=tag_id)
+
+    if request.method != 'POST':
+        # Ursprüngliche Anforderung; das mit dem jetzigen
+        # Eintrag vorab ausgefuellte Formular wird angezeigt
+        form = TagForm(instance=tag)
+    else:
+        # POST-Daten uebermittelt; Daten werden verarbeitet
+        form = TagForm(instance=tag, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app_blogs:tag_list')
+            # return redirect('app_blogs:tag_show', tag_id=tag.id)
+            
+    context = {'tag': tag, 'form': form}
+    return render(request, 'app_blogs/tag_edit.html', context)
+
+# -----------------------------------------------
+def topic_edit(request, topic_id):
+    """edit a topic"""
+    # path('topic_edit/<int:topic_id>/', views.topic_edit, name='topic_edit'),
+
+    topic = Topic.objects.get(id=topic_id)
+
+    if request.method != 'POST':
+        # Ursprüngliche Anforderung; das mit dem jetzigen
+        # Eintrag vorab ausgefuellte Formular wird angezeigt
+        form = TopicForm(instance=topic)
+    else:
+        # POST-Daten uebermittelt; Daten werden verarbeitet
+        form = TopicForm(instance=topic, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app_blogs:topic_list')
+            # return redirect('app_blogs:topic_show', topic_id=topic.id)
+            
+    context = {'topic': topic, 'form': form}
+    return render(request, 'app_blogs/topic_edit.html', context)
+
+
+
+
+
+
+# ============================================================================
+# 
 
 
 # ==================================================================

@@ -48,7 +48,7 @@
                     <tbody>
                         {% for d in data %}
                         <tr>
-                            <td>{{d.id}}</td>
+                            <td><a href="{% url 'app_blogs:topic_edit' d.id %}">{{d.id}}</a></td>
                             <td>{{d.topic}}</td>
                             <td>{{d.is_checked}}</td>
                             <td>{{d.is_active}}</td>

@@ -1,7 +1,7 @@
 {% extends 'layout/base.html' %}
 
 {% block title %} 
-    tag_list
+    tag_show
 {% endblock title %}
 
 
@@ -9,9 +9,9 @@
 
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">tag_list</h1>
+        <h1 class="mt-4">tag_show</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">tag: list . . .</li>
+            <li class="breadcrumb-item active">tag: show . . .</li>
         </ol>
 
         <div class="card mb-4">
@@ -33,31 +33,17 @@
                             <th>date_modified</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>id</th>
-                            <th>tag</th>
-                            <th>is_checked</th>
-                            <th>is_active</th>
-                            <th>date_beg</th>
-                            <th>date_end</th>
-                            <th>date_created</th>
-                            <th>date_modified</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
-                        {% for d in data %}
                         <tr>
-                            <td><a href="{% url 'app_blogs:tag_edit' d.id %}">{{d.id}}</a></td>
-                            <td>{{d.tag}}</td>
-                            <td>{{d.is_checked}}</td>
-                            <td>{{d.is_active}}</td>
-                            <td>{{d.date_beg}}</td>
-                            <td>{{d.date_end}}</td>
-                            <td>{{d.date_created}}</td>
-                            <td>{{d.date_modified}}</td>
+                            <td>{{data.id}}</td>
+                            <td>{{data.tag}}</td>
+                            <td>{{data.is_checked}}</td>
+                            <td>{{data.is_active}}</td>
+                            <td>{{data.date_beg}}</td>
+                            <td>{{data.date_end}}</td>
+                            <td>{{data.date_created}}</td>
+                            <td>{{data.date_modified}}</td>
                         </tr>
-                        {% endfor %}
                     </tbody>
                 </table>
             </div>

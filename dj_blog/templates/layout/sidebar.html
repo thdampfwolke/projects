@@ -6,14 +6,15 @@
                 Dashboard
             </a>
         <div class="sb-sidenav-menu-heading">Interface</div>
-
-    	<!-- --------------------------------------------------------------------- -->
+        <!-- --------------------------------------------------------------------- -->
+        <!-- base.html -> bs5: css: styles.css: sb-sidenav-dark, sb-sidenav-light  -->
+        <!-- --------------------------------------------------------------------- -->
         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts1">
             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
             MY-BLOG
             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
         </a>
-
+        
         <div class="collapse" id="collapseLayouts1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav">
                 <!-- -->
@@ -27,10 +28,14 @@
                 <a class="nav-link" href="{% url 'app_blogs:entry_add' %}">entry: add</a>
                 <!-- -->
                 <a class="nav-link" href="{% url 'app_blogs:topic_list' %}">topic: list</a>
+                <a class="nav-link" href="{% url 'app_blogs:topic_show' 1 %}">topic: show: 1</a>
                 <a class="nav-link" href="{% url 'app_blogs:topic_add' %}">topic: add</a>
+                <a class="nav-link" href="{% url 'app_blogs:topic_edit' 1 %}">topic: edit: 1</a>
                 <!-- -->
                 <a class="nav-link" href="{% url 'app_blogs:tag_list' %}">tag: list</a>
+                <a class="nav-link" href="{% url 'app_blogs:tag_show' 1 %}">tag: show: 1</a>
                 <a class="nav-link" href="{% url 'app_blogs:tag_add' %}">tag: add</a>
+                <a class="nav-link" href="{% url 'app_blogs:tag_edit' 1 %}">tag: edit: 1</a>
                 <!-- -->
                 <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
             </nav>

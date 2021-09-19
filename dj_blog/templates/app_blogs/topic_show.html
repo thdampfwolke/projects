@@ -1,0 +1,54 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} 
+    topic_show
+{% endblock title %}
+
+
+{% block body %}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">topic_show</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">topic: show . . .</li>
+        </ol>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                <a href="{% url 'app_blogs:topic_add' %}">Add a new topic</a>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>topic</th>
+                            <th>is_checked</th>
+                            <th>is_active</th>
+                            <th>date_beg</th>
+                            <th>date_end</th>
+                            <th>date_created</th>
+                            <th>date_modified</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{data.id}}</td>
+                            <td>{{data.topic}}</td>
+                            <td>{{data.is_checked}}</td>
+                            <td>{{data.is_active}}</td>
+                            <td>{{data.date_beg}}</td>
+                            <td>{{data.date_end}}</td>
+                            <td>{{data.date_created}}</td>
+                            <td>{{data.date_modified}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock body %}

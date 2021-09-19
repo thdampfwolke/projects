@@ -1,0 +1,27 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} 
+    topic_edit
+{% endblock title %}
+
+
+{% block body %}
+
+<main>
+    <div class="container-fluid px-4">
+
+        <h1 class="mt-4">topic_edit: Edit a topic</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">. . .</li>
+        </ol>
+
+        <form action="{% url 'app_blogs:topic_edit' topic.id %}" method='post'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button name="submit">Save changes</button>
+        </form>
+
+    </div>
+</main>
+
+{% endblock body %}
