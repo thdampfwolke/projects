@@ -71,6 +71,14 @@ def post_list(request):
     context = {'data': data}
     return render(request, 'app_blogs/post_list.html', context)
 
+# -----------------------------------------------
+def entry_list(request):
+    """Show all entries"""
+    # path('entry/', views.entry_list, name='entry_list'),
+    data = Entry.objects.order_by('-date_modified')
+    # data = Entry.objects.filter(owner=request.user).order_by('date_modified')
+    context = {'data': data}
+    return render(request, 'app_blogs/entry_list.html', context)
 
 # ============================================================================
 # show:
@@ -233,9 +241,50 @@ def topic_edit(request, topic_id):
     context = {'topic': topic, 'form': form}
     return render(request, 'app_blogs/topic_edit.html', context)
 
+# -----------------------------------------------
+def entry_edit(request, entry_id):
+    """edit a entry"""
+    # path('entry_edit/<int:entry_id>/', views.entry_edit, name='entry_edit'),
+
+    entry = Entry.objects.get(id=entry_id)
+
+    if request.method != 'POST':
+        # Ursprüngliche Anforderung; das mit dem jetzigen
+        # Eintrag vorab ausgefuellte Formular wird angezeigt
+        form = EntryForm(instance=entry)
+    else:
+        # POST-Daten uebermittelt; Daten werden verarbeitet
+        form = EntryForm(instance=entry, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app_blogs:entry_list')
+            # return redirect('app_blogs:entry_show', entry_id=entry.id)
+            
+    context = {'entry': entry, 'form': form}
+    return render(request, 'app_blogs/entry_edit.html', context)
 
 
+# -----------------------------------------------
+def post_edit(request, post_id):
+    """edit a post"""
+    # path('post_edit/<int:post_id>/', views.post_edit, name='post_edit')
 
+    post = Post.objects.get(id=post_id)
+
+    if request.method != 'POST':
+        # Ursprüngliche Anforderung; das mit dem jetzigen
+        # Eintrag vorab ausgefuellte Formular wird angezeigt
+        form = PostForm(instance=post)
+    else:
+        # POST-Daten uebermittelt; Daten werden verarbeitet
+        form = PostForm(instance=post, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app_blogs:post_list')
+            # return redirect('app_blogs:post_show', post_id=post.id)
+            
+    context = {'post': post, 'form': form}
+    return render(request, 'app_blogs/post_edit.html', context)
 
 
 # ============================================================================

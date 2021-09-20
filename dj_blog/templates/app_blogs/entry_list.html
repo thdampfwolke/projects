@@ -1,7 +1,7 @@
 {% extends 'layout/base.html' %}
 
 {% block title %} 
-    entry_show
+    entry_list
 {% endblock title %}
 
 
@@ -9,29 +9,27 @@
 
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">entry_show</h1>
+        <h1 class="mt-4">entry_list</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">entry: show . . .</li>
+            <li class="breadcrumb-item active">entry: list . . .</li>
         </ol>
 
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                <a href="{% url 'app_blogs:entry_edit' data.id %}"><strong>Entry:</strong> {{data.id}}</a><br><hr>
-                text:  {{data.text}}<br><hr>
-                is_checked: {{data.is_checked}}  -  
-                is_active: {{data.is_active}}<br>
-                date_beg:  {{data.date_beg}}  -  
-                date_end: {{data.date_end}}  -  
-                date_created: {{data.date_created}}  -  
-                date_modified: {{data.date_modified}}
+                <a href="{% url 'app_blogs:entry_add' %}">Add a new entry</a>
             </div>
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
                             <th>id</th>
+                            <th>post</th>
                             <th>text</th>
+                            <th>is_checked</th>
+                            <th>is_active</th>
+                            <th>date_beg</th>
+                            <th>date_end</th>
                             <th>date_created</th>
                             <th>date_modified</th>
                         </tr>
@@ -39,16 +37,26 @@
                     <tfoot>
                         <tr>
                             <th>id</th>
+                            <th>post</th>
                             <th>text</th>
+                            <th>is_checked</th>
+                            <th>is_active</th>
+                            <th>date_beg</th>
+                            <th>date_end</th>
                             <th>date_created</th>
                             <th>date_modified</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        {% for d in del %}
+                        {% for d in data %}
                         <tr>
-                            <td>{{d.id}}</td>
-                            <td>{{d.text}}</td>
+                            <td><a href="{% url 'app_blogs:entry_show' d.id %}">{{d.id}}</a></td>
+                            <td>{{d.post.title}}</td>
+                            <td>{{d.text|truncatechars:50}}</td>
+                            <td>{{d.is_checked}}</td>
+                            <td>{{d.is_active}}</td>
+                            <td>{{d.date_beg}}</td>
+                            <td>{{d.date_end}}</td>
                             <td>{{d.date_created}}</td>
                             <td>{{d.date_modified}}</td>
                         </tr>
@@ -61,7 +69,3 @@
 </main>
 
 {% endblock body %}
-
-
-Entry:  id,             text,                   date_created,   date_modified
-
