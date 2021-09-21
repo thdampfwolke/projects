@@ -16,8 +16,9 @@
 
         <div class="card mb-4">
             <div class="card-header">
-                <i class="fas fa-table me-1"></i>
-                <a href="{% url 'app_blogs:post_edit' data.id %}"><strong>Post:</strong> {{data.id}}</a><br><hr>
+                <i class="fas fa-edit me-1"></i>
+                <a href="{% url 'app_blogs:post_edit' data.id %}"><strong>edit Post: {{data.id}}</strong></a>  -  or  -  
+                <a href="{% url 'app_blogs:entry_add' %}"><strong>add Entry</strong></a><br><hr>
                 title: {{data.title}}<br>
                 text:  {{data.text}}<br><hr>
                 topic: {{data.topic}}<br>
