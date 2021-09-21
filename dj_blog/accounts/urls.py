@@ -2,19 +2,16 @@
 # ../dj_blog/accounts/urls.py
 # ------------------------------------------------------------------
 
-from django.urls import path
-from . import views
+from django.urls import path, include
+# from . import views
 
 app_name = 'accounts'
 
 # path('accounts/', include('accounts.urls')),
 
 urlpatterns = [
-    path('', views.index, name='index'), path(
-        'index.html', views.index_01, name='index_01'),
-    path('index_bs5.html', views.index_bs5, name='index_bs5'),
     # ------------------------------------------------------------------------------
-    
+    path('', include('django.contrib.auth.urls')), 
     # ------------------------------------------------------------------------------
     # app_blog:
     # path('blog.html', views.blog, name='blog'),
@@ -26,9 +23,19 @@ urlpatterns = [
 ]
 
 # http://127.0.0.1:8000/accounts
-# http://127.0.0.1:8000/index.html
-# http://127.0.0.1:8000/blog.html
-# http://127.0.0.1:8000/tag_list.html
-# http://127.0.0.1:8000/topic_list.html
-# http://127.0.0.1:8000/
-# http://127.0.0.1:8000/
+
+# ----------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/3.2/topics/auth/default/#user-objects
+# django.contrib.auth.urls
+# 
+# urlpatterns = [   path('accounts/', include('django.contrib.auth.urls'))  ]
+# 
+# This will include the following URL patterns:
+# accounts/login/ [name='login']
+# accounts/logout/ [name='logout']
+# accounts/password_change/ [name='password_change']
+# accounts/password_change/done/ [name='password_change_done']
+# accounts/password_reset/ [name='password_reset']
+# accounts/password_reset/done/ [name='password_reset_done']
+# accounts/reset/<uidb64>/<token>/ [name='password_reset_confirm']
+# accounts/reset/done/ [name='password_reset_complete']
